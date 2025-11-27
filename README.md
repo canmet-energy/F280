@@ -410,6 +410,134 @@ Difference: -27.0%
 
 ---
 
+## IDF File Requirements
+
+The F280 calculator parses EnergyPlus IDF files to extract building geometry automatically. The parser is flexible and works with standard EnergyPlus objects - **no special naming conventions or modifications are required**.
+
+### What Gets Parsed Automatically
+
+**Building Geometry:**
+- `BuildingSurface:Detailed` objects
+  - **Walls**: Surfaces with type='Wall' and OutsideBoundaryCondition='Outdoors'
+  - **Roofs**: Surfaces with type='Roof', 'RoofCeiling', or 'Ceiling'
+  - **Floors**: Surfaces with type='Floor' (used to calculate footprint and storey count)
+  - Wall orientations (North/East/South/West) calculated from surface normal vectors
+
+**Windows:**
+- `FenestrationSurface:Detailed` objects with type='Window', 'GlassDoor', or 'Skylight'
+- `Window` objects (simplified window input)
+  - Automatically linked to parent wall surface for orientation
+  - Window orientations calculated from parent surface
+
+**Glazing Properties:**
+- `WindowMaterial:SimpleGlazingSystem` objects
+  - Extracts U-value and SHGC
+  - If multiple glazing systems exist, uses most conservative values (lowest U, highest SHGC)
+
+**Occupancy:**
+- `Zone` objects with floor area field (field 10)
+- `People` objects with 'Area/Person' calculation method
+  - Automatically calculates occupant count from zone floor area and area-per-person
+
+### Zone Name Filtering
+
+The parser **automatically excludes** certain zones from above-grade calculations to avoid double-counting:
+
+**Excluded from wall area calculations:**
+- Any zone with "basement" in the name (case-insensitive)
+- Any zone with "attic" in the name (case-insensitive)
+
+**Excluded from floor area calculations:**
+- Any zone with "basement" in the name
+- Any zone with "attic" in the name
+
+This ensures that only conditioned living space is included in cooling load calculations.
+
+### What You DON'T Need to Do
+
+❌ **No special naming required** - zones can have any names
+❌ **No specific construction names** - parser works with any construction
+❌ **No coordinate system alignment** - orientations calculated automatically
+❌ **No manual area calculations** - all computed from vertices
+
+### What You CAN Override
+
+Even with a complete IDF, you can override any parsed values:
+
+```python
+results = f280_cooling_load_from_idf(
+    'building.idf',
+    # Override parsed envelope properties
+    ag_walls_rsi=5.0,      # Override wall insulation
+    windows_u=1.2,         # Override glazing U-value
+    shgc=0.3,              # Override solar heat gain coefficient
+    # Add missing information
+    ach=1.5,               # Add blower door test result
+    latitude_deg=51.0,     # Add site location
+)
+```
+
+### Fallback Behavior
+
+If IDF parsing fails or returns incomplete data, the calculator uses estimation methods:
+
+**Geometry estimation** (if IDF parsing incomplete):
+- Requires: `footprint` (m²) and `storeys` parameters
+- Estimates wall area from footprint perimeter × storey height
+- Distributes windows equally across orientations
+
+**Default envelope values** (if not in IDF or overrides):
+- `ag_walls_rsi`: 3.5 m²·K/W
+- `attic_rsi`: 8.8 m²·K/W  
+- `windows_u`: 1.8 W/(m²·K)
+- `shgc`: 0.4
+- `ach`: 2.5 ACH@50Pa
+
+### Example IDF Objects
+
+**Typical BuildingSurface:Detailed** (no special requirements):
+```
+BuildingSurface:Detailed,
+  Living_Room_Wall_North,     ! Name (any name is fine)
+  Wall,                        ! Surface Type
+  ExteriorWall,               ! Construction Name (any name is fine)
+  Living_Room,                ! Zone Name (any name is fine)
+  Outdoors,                   ! Outside Boundary Condition (must be 'Outdoors' for outdoor walls)
+  ,                           ! Outside Boundary Condition Object
+  SunExposed,                 ! Sun Exposure
+  WindExposed,                ! Wind Exposure
+  0.5,                        ! View Factor to Ground
+  4,                          ! Number of Vertices
+  0.0, 0.0, 2.5,             ! Vertex coordinates (parser calculates area and orientation)
+  0.0, 0.0, 0.0,
+  10.0, 0.0, 0.0,
+  10.0, 0.0, 2.5;
+```
+
+**Typical Window** (simplified):
+```
+Window,
+  Living_Room_Window_1,       ! Name (any name is fine)
+  SimpleGlazing,              ! Construction Name
+  Living_Room_Wall_North,     ! Building Surface Name (links to parent wall)
+  ,                           ! Frame and Divider Name
+  ,                           ! Multiplier
+  2.0,                        ! Starting X Coordinate
+  1.0,                        ! Starting Z Coordinate
+  1.5,                        ! Length
+  1.2;                        ! Height
+```
+
+### Tips for Best Results
+
+✅ **Include SimpleGlazingSystem** - Provides accurate U-value and SHGC for windows
+✅ **Use descriptive zone names** - Include "basement" or "attic" in names for automatic exclusion
+✅ **Define People objects** - Enables automatic occupant count calculation
+✅ **Include outdoor walls only** - Parser correctly ignores interior partitions
+✅ **Standard EnergyPlus format** - Any valid EnergyPlus IDF will work
+
+---
+
 ## Installation
 
 ### Requirements
