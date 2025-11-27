@@ -33,6 +33,27 @@ import re
 import json
 from pathlib import Path
 import warnings
+import importlib.util
+import sys
+
+# Import AIM-2 infiltration model
+try:
+    # Load AIM-2.py (with hyphen in filename)
+    aim2_path = Path(__file__).parent / "AIM-2.py"
+    if aim2_path.exists():
+        spec = importlib.util.spec_from_file_location("aim2_module", aim2_path)
+        aim2_module = importlib.util.module_from_spec(spec)
+        sys.modules["aim2_module"] = aim2_module
+        spec.loader.exec_module(aim2_module)
+        aim2_compute_infiltration = aim2_module.compute_infiltration
+        AIM2Inputs = aim2_module.Inputs
+    else:
+        aim2_compute_infiltration = None
+        AIM2Inputs = None
+except Exception:
+    # Fallback if import fails
+    aim2_compute_infiltration = None
+    AIM2Inputs = None
 
 # (Legacy multi-building batch globals removed)
 
@@ -304,14 +325,73 @@ def calculate_cooling_load_f280(params, inputs):
     q_internal = HGsp + HGapk + HGapl
     
     # 4. Infiltration load (CSA F280 Section 6.1.4)
-    # Convert ACH50 to natural ACH (typical factor: ACH50/20)
+    # Use AIM-2 model to calculate natural ACH if available and configured
     volume = floor_area_total * floor_height
     # Clause 6.2.6: HGsalb = LFair * Vb/3.6 * DTDc * 1.2  (LFair in air changes per hour)
     lfair = inputs.get('natural_ach')
+    
+    # Try to use AIM-2 if parameters provided and module available
+    if lfair is None and aim2_compute_infiltration is not None:
+        aim2_params = {
+            'n': inputs.get('aim2_flow_exponent', 0.67),
+            'n50': inputs.get('n50', ach),
+            'house_type': inputs.get('house_type', 'detached'),
+            'foundation': inputs.get('foundation', 'crawl'),
+            'storeys': str(storeys) if storeys in [1, 2, 3] else '2',
+            'flue_diam_mm': inputs.get('flue_diam_mm', 0.0),
+            'shelter_walls': inputs.get('shelter_walls', 1.0),
+            'shelter_flue': inputs.get('shelter_flue', 1.0),
+            'terrain_class_met': inputs.get('terrain_class_met', 3),
+            'terrain_class_site': inputs.get('terrain_class_site', 7),
+        }
+        
+        # Get wind speed from climate data or inputs
+        wind_speed_met = inputs.get('wind_speed_met')
+        if wind_speed_met is None:
+            city_name = inputs.get('city')
+            if city_name:
+                # Load from NBC_F280_merge.csv
+                climate_db = _load_climate_db()
+                if climate_db is not None:
+                    city_row = climate_db[climate_db['City'].str.lower() == city_name.lower()]
+                    if not city_row.empty:
+                        # Use JulWind column for cooling season
+                        wind_speed_met = city_row.iloc[0].get('JulWind', 10.0)
+            
+            if wind_speed_met is None:
+                wind_speed_met = 10.0  # Default 10 km/h
+        
+        try:
+            aim2_inputs = AIM2Inputs(
+                volume=volume,
+                n=aim2_params['n'],
+                n50=aim2_params['n50'],
+                eave_height=storeys * floor_height,
+                indoor_temp=Tic,
+                outdoor_temp=Toc,
+                temp_unit='C',
+                flue_diam_mm=aim2_params['flue_diam_mm'],
+                wind_speed_met=wind_speed_met,
+                met_height=10.0,
+                terrain_class_met=aim2_params['terrain_class_met'],
+                terrain_class_site=aim2_params['terrain_class_site'],
+                shelter_walls=aim2_params['shelter_walls'],
+                shelter_flue=aim2_params['shelter_flue'],
+                house_type=aim2_params['house_type'],
+                foundation=aim2_params['foundation'],
+                storeys=aim2_params['storeys']
+            )
+            aim2_results = aim2_compute_infiltration(aim2_inputs)
+            lfair = aim2_results['Qnat']  # Natural ACH from AIM-2
+        except Exception:
+            # Fall back to simple approximation if AIM-2 fails
+            lfair = None
+    
     if lfair is None:
-        # approximate from ACH50 if provided
+        # Fallback: approximate from ACH50 if provided
         ach50 = ach
         lfair = ach50 / inputs.get('ach50_to_natural_divisor', 20.0)
+    
     HGsalb = lfair * volume / 3.6 * delta_t * 1.2
     q_infiltration_sensible = HGsalb  # building-level
     infiltration_m3s = (lfair * volume) / 3600.0  # Convert ACH to m³/s
@@ -436,6 +516,8 @@ def calculate_cooling_load_f280(params, inputs):
         'wall_orientation_areas_m2': wall_orientation_areas if wall_orientation_areas else {},
         'window_orientation_areas_m2': window_orientation_areas if window_orientation_areas else {},
         'solar_details': solar_details,
+        'natural_ach_used': lfair,
+        'infiltration_method': 'AIM-2' if (inputs.get('natural_ach') is None and aim2_compute_infiltration is not None) else 'Simple',
     }
 
 

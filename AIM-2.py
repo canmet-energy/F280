@@ -129,8 +129,9 @@ class Inputs:
     n50: float
     # Geometry & temps
     eave_height: float
-    indoor_temp: float = 295.0
-    outdoor_temp: float = 273.0
+    indoor_temp: float = 22.0  # Celsius (converted to Kelvin internally)
+    outdoor_temp: float = 0.0  # Celsius (converted to Kelvin internally)
+    temp_unit: str = 'C'  # 'C' for Celsius or 'K' for Kelvin
     # Flue
     flue_diam_mm: float = 0.0
     flue_height: float = None
@@ -150,6 +151,14 @@ class Inputs:
 # ------------------------
 # Helper functions
 # ------------------------
+
+def convert_to_kelvin(temp: float, unit: str = 'C') -> float:
+    """Convert temperature to Kelvin.
+    unit: 'C' for Celsius, 'K' for Kelvin
+    """
+    if unit.upper() == 'C':
+        return temp + 273.15
+    return temp
 
 def C_from_n50(volume_m3: float, n: float, n50: float) -> float:
     """
@@ -293,6 +302,10 @@ def superpose(Qs: float, Qw: float, n: float) -> float:
     return ((Qs ** (1/n)) + (Qw ** (1/n)) + B_INTERACTION * ((Qs * Qw) ** (0.5 / n))) ** n
 
 def compute_infiltration(inputs: Inputs) -> Dict[str, float]:
+    # Convert temperatures to Kelvin if needed
+    Ti = convert_to_kelvin(inputs.indoor_temp, inputs.temp_unit)
+    To = convert_to_kelvin(inputs.outdoor_temp, inputs.temp_unit)
+    
     # Derive C from N50 and n
     C_base = C_from_n50(inputs.volume, inputs.n, inputs.n50)
 
@@ -311,7 +324,7 @@ def compute_infiltration(inputs: Inputs) -> Dict[str, float]:
     R, X, Y = leakage_parameters(C_total, Cc0, Cf0, Cw0, Cflue, fractions)
 
     # Stack flow
-    Ps = stack_pressure(inputs.eave_height, inputs.indoor_temp, inputs.outdoor_temp)
+    Ps = stack_pressure(inputs.eave_height, Ti, To)
     fs = fs_no_flue(inputs.n, R, X)
     Qs = stack_flow(C_total, inputs.n, Ps, fs, inputs.volume)
 
@@ -345,8 +358,9 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--n50", type=float, required=True, help="Air change rate at 50 Pa (ACH @ 50 Pa)")
     # Geometry & temps
     p.add_argument("--eave_height", type=float, required=True, help="Eave height (m)")
-    p.add_argument("--indoor_temp", type=float, default=297.0)
-    p.add_argument("--outdoor_temp", type=float, default=301.0)
+    p.add_argument("--indoor_temp", type=float, default=24.0, help="Indoor temperature (°C)")
+    p.add_argument("--outdoor_temp", type=float, default=28.0, help="Outdoor temperature (°C)")
+    p.add_argument("--temp_unit", type=str, default='C', choices=['C', 'K'], help="Temperature unit (C or K)")
     # Flue
     p.add_argument("--flue_diam_mm", type=float, default=0.0, help="Flue diameter (mm)")
     p.add_argument("--flue_height", type=float, help="Flue height (m)")
@@ -378,6 +392,7 @@ def main():
         eave_height=args.eave_height,
         indoor_temp=args.indoor_temp,
         outdoor_temp=args.outdoor_temp,
+        temp_unit=args.temp_unit,
         flue_diam_mm=args.flue_diam_mm,
         flue_height=args.flue_height,
         wind_speed=args.wind_speed,
