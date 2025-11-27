@@ -1,3 +1,5 @@
+# `This code is a work in progress. It likely has errors.`
+
 # F280 Cooling Load Calculator with AIM-2 Infiltration
 
 This repository contains tools for calculating residential cooling loads per CSA F280-12 standard, with advanced infiltration modeling using the AIM-2 (Air Infiltration Model) based on Bradley's HOT2000 implementation.
