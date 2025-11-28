@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Output files
+*.out
+*.log
+
+# EnergyPlus simulation outputs
+*.idf-err
+*.eio
+*.mtd
+*.mdd
+*.mtr
+*.eso
+*.rdd
+*.audit
+*.bnd
+*.shd
+*.svg
+*.dxf
+*.htm
+*.html
+*.sql
+*.epJSON
+
+# Results and temporary files
+results/
+output/
+temp/
+tmp/
+run/
+
+# H2K temporary files
+*.tmp
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini

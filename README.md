@@ -1,3 +1,5 @@
+# `This code is a work in progress. It likely has errors.`
+
 # F280 Cooling Load Calculator with AIM-2 Infiltration
 
 This repository contains tools for calculating residential cooling loads per CSA F280-12 standard, with advanced infiltration modeling using the AIM-2 (Air Infiltration Model) based on Bradley's HOT2000 implementation.
@@ -196,10 +198,9 @@ CSA F280-12 is the Canadian standard for determining heating and cooling loads i
 5. **Ventilation** (HGsvb): Mechanical ventilation loads
 6. **Duct gains** (HGdr): Based on location and insulation
 
-#### Latent Loads
-1. **Occupants**: Moisture from people
-2. **Infiltration**: Outdoor humidity
-3. **Ventilation**: Mechanical ventilation humidity
+#### Equipment Sizing
+- **Latent multiplier** (default 1.3): Applied to sensible total per CSA F280-12 to account for latent loads (occupants, infiltration, ventilation moisture)
+- Allowable capacity range per Clauses 6.3.2-6.3.5
 
 ### Using F280 Calculator
 
@@ -248,12 +249,10 @@ print(f"Internal gains: {results['HGsp_people_W'] + results['HGapk_appliances_W'
 print(f"Infiltration: {results['HGsalb_infiltration_W']:.0f}")
 print(f"Ventilation: {results['HGsvb_ventilation_W']:.0f}")
 print(f"Duct gains: {results['HGdr_duct_gain_W']:.0f}")
-print(f"\n--- Total Load ---")
-print(f"Sensible: {results['HGsr_sensible_total_W']:.0f} W")
-print(f"Latent: {results['q_latent_total']:.0f} W")
-print(f"Total: {results['q_total_W']:.0f} W")
 print(f"\n--- Equipment Sizing ---")
-print(f"Nominal: {results['cooling_tons_nominal']:.2f} tons")
+print(f"Sensible total: {results['HGsr_sensible_total_W']:.0f} W")
+print(f"Latent multiplier: {results['latent_multiplier_used']:.2f}")
+print(f"Nominal capacity: {results['cooling_tons_nominal']:.2f} tons ({results['CSCn_nominal_W']:.0f} W)")
 print(f"Selected: {results['cooling_tons_selected']:.2f} tons")
 print(f"Capacity: {results['cooling_kw_selected']:.2f} kW")
 print(f"Airflow: {results['airflow_cfm']:.0f} CFM")
@@ -321,9 +320,8 @@ python calculate_f280_cooling_sizing.py \
 
 #### Other
 - `bedrooms`: Number of bedrooms (for occupant count)
-- `latent_multiplier`: Latent load safety factor (default: 1.3)
+- `latent_multiplier`: Latent load multiplier applied to sensible total (default: 1.3)
 - `shading_factor_global`: Global window shading factor (0-1)
-- `occupant_latent_W`: Latent gain per occupant (W)
 - `laundry_gain_W`: Laundry equipment gain (W)
 
 ---
@@ -687,10 +685,9 @@ print(df)
     'HGsalb_infiltration_W': 164.7,
     'HGsvb_ventilation_W': 125.0,
     'HGsr_sensible_total_W': 9271.9,
-    'q_latent_total': 1635.7,
-    'q_total_W': 10907.6,
     
     # Equipment sizing
+    'CSCn_nominal_W': 12053.5,
     'cooling_tons_selected': 3.5,
     'cooling_kw_selected': 12.31,
     'airflow_cfm': 1400.0,

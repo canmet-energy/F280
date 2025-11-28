@@ -269,7 +269,7 @@ def shelter_coefficient(Y: float, Swo: float, Swflue: float) -> float:
     """
     Bradley (HOT2000): Sw = Swo*(1 + Y) + Swflue*(1.5*Y)
     """
-    return Swo * (1.0 - Y) + Swflue * (1.5 * Y)
+    return Swo * (1.0 - Y) + Swflue * (1.5 * Y) #This equation is shown as Swo * (1.0 + Y) + Swflue * (1.5 * Y) in Bradley but this is a typo
 
 def fw_no_flue(n: float, R: float, X: float) -> float:
     """

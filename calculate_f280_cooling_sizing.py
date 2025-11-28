@@ -3,14 +3,14 @@
 This module provides a single-building cooling load calculation per CSA F280-12 Section 6.
 Primary entry point: `f280_cooling_load_from_idf(idf_path, **overrides)` or CLI via `_run_cli()`.
 
-Implemented Components (Sensible & Latent):
+Implemented Components (Sensible):
     - Opaque assemblies conduction + solar correction (Table 3)
     - Transparent assemblies solar + conduction (Solar0 + SHGC)
     - Internal gains (occupants, appliances, laundry)
     - Infiltration & ventilation loads (simplified ACH method / principal ventilation L/s)
     - Duct gains (location + insulation multiplier)
-    - Latent loads (occupants + infiltration + ventilation humidity ratio delta)
     - Equipment sizing & allowable range (Clauses 6.3.1–6.3.5)
+    - Latent loads accounted for via latent_multiplier (default 1.3)
 
 Climate Integration:
     - Optional nearest-site lookup from `NBC_F280_merge.csv` when latitude & longitude supplied.
@@ -189,7 +189,6 @@ LIGHTING_GAIN = 150  # W (average lighting load)
 # Air properties
 AIR_DENSITY = 1.2  # kg/m³
 AIR_SPECIFIC_HEAT = 1006  # J/(kg·K)
-LATENT_HEAT_VAPORIZATION = 2501000  # J/kg
 
 
 def calculate_cooling_load_f280(params, inputs):
@@ -202,6 +201,7 @@ def calculate_cooling_load_f280(params, inputs):
     - Internal gains (occupants, appliances, lighting)
     - Ventilation and infiltration loads
     - Duct gains (if applicable)
+    - Latent loads handled via latent_multiplier applied to sensible total
     """
     
     # Extract building geometry
@@ -423,32 +423,10 @@ def calculate_cooling_load_f280(params, inputs):
     HGsr = HGcr + HGsp + HGapk + HGapl + HGsalr + HGdr + HGsvr
     q_sensible_total = HGsr
     
-    # ========== LATENT COOLING LOADS ==========
-    
-    # 1. Internal latent gains
-    # Latent from occupants: use latent component 55 W/person (approx, not specified in excerpt; can override)
-    q_occupants_latent = num_occupants * inputs.get('occupant_latent_W', 55.0)
-    
-    # 2. Infiltration latent load
-    # Calculate humidity ratio difference
-    # Simplified: assume outdoor w = 0.015 kg/kg, indoor w = 0.009 kg/kg
-    w_outdoor = 0.015  # kg water/kg dry air (summer design)
-    w_indoor = 0.009  # kg water/kg dry air (comfort)
-    delta_w = w_outdoor - w_indoor
-    q_infiltration_latent = infiltration_m3s * AIR_DENSITY * LATENT_HEAT_VAPORIZATION * delta_w
-    
-    # 3. Ventilation latent load (HRV has minimal effect on latent)
-    q_ventilation_latent = ventilation_m3s * AIR_DENSITY * LATENT_HEAT_VAPORIZATION * delta_w
-    
-    # Total latent cooling load
-    q_latent_total = q_occupants_latent + q_infiltration_latent + q_ventilation_latent
-    
-    # ========== TOTAL COOLING LOAD ==========
-    q_total = q_sensible_total + q_latent_total
-    
     # ========== EQUIPMENT SIZING (CSA F280 Section 6.3) ==========
     
-    # Apply safety factor (typically 1.1-1.2)
+    # Apply latent multiplier per Clause 6.3.1
+    # This accounts for latent loads (occupants, infiltration, ventilation moisture)
     latent_multiplier = inputs.get('latent_multiplier', DEFAULT_LATENT_MULTIPLIER)
     CSCn_nominal = latent_multiplier * HGsr  # Clause 6.3.1
     # Allowable installed capacity range
@@ -482,8 +460,6 @@ def calculate_cooling_load_f280(params, inputs):
         'HGsr_sensible_total_W': HGsr,
         'q_solar_transmission_W': q_solar_total,
         'q_windows_conduction_W': q_windows_conduction,
-        'q_latent_total': q_latent_total,
-        'q_total_W': q_total,
         'CSCn_nominal_W': CSCn_nominal,
         'CSCn_min_allowable_W': min_capacity,
         'CSCn_max_allowable_W': max_capacity,
@@ -578,13 +554,38 @@ def parse_idf_parameters(sim_dir: Path):
                 outside_bc = tokens[4].lower() if len(tokens) > 4 else ''
                 num_vertices = None
                 coords_start_index = None
+                
+                # Try to find explicit vertex count in the tokens
                 for idx, tk in enumerate(tokens):
                     if num_vertices is None and re.fullmatch(r'[0-9]+', tk):
                         num_vertices = int(tk)
                         coords_start_index = idx + 1
                         break
+                
+                # If no explicit vertex count found, look for coordinate data
+                # Starting from a reasonable position (after standard fields)
                 if not num_vertices:
+                    # Standard fields: Name, Type, Construction, Zone, Space, OutsideBoundary, 
+                    # BoundaryObject, SunExposure, WindExposure, ViewFactor, NumVertices (often blank)
+                    # So coordinates typically start around index 10-11
+                    search_start = min(10, len(tokens))
+                    coord_tokens = []
+                    for idx in range(search_start, len(tokens)):
+                        try:
+                            float(tokens[idx])
+                            coord_tokens.append(tokens[idx])
+                        except ValueError:
+                            # Stop when we hit a non-numeric token
+                            break
+                    
+                    # Calculate number of vertices from coordinate count
+                    if len(coord_tokens) >= 9 and len(coord_tokens) % 3 == 0:
+                        num_vertices = len(coord_tokens) // 3
+                        coords_start_index = search_start
+                
+                if not num_vertices or coords_start_index is None:
                     continue
+                    
                 coord_tokens = tokens[coords_start_index:coords_start_index + num_vertices*3]
                 if len(coord_tokens) < num_vertices*3:
                     continue
@@ -633,13 +634,34 @@ def parse_idf_parameters(sim_dir: Path):
                 surf_type = tokens[1].lower()
                 num_vertices = None
                 coords_start_index = None
+                
+                # Try to find explicit vertex count
                 for idx, tk in enumerate(tokens):
                     if num_vertices is None and re.fullmatch(r'[0-9]+', tk):
                         num_vertices = int(tk)
                         coords_start_index = idx + 1
                         break
+                
+                # If no explicit vertex count, try to count coordinate triplets
                 if not num_vertices:
+                    # FenestrationSurface fields: Name, Type, Construction, Surface, OutsideBoundary,
+                    # ViewFactor, FrameDivider, Multiplier, NumVertices (often blank)
+                    search_start = min(8, len(tokens))
+                    coord_tokens = []
+                    for idx in range(search_start, len(tokens)):
+                        try:
+                            float(tokens[idx])
+                            coord_tokens.append(tokens[idx])
+                        except ValueError:
+                            break
+                    
+                    if len(coord_tokens) >= 9 and len(coord_tokens) % 3 == 0:
+                        num_vertices = len(coord_tokens) // 3
+                        coords_start_index = search_start
+                
+                if not num_vertices or coords_start_index is None:
                     continue
+                    
                 coord_tokens = tokens[coords_start_index:coords_start_index + num_vertices*3]
                 if len(coord_tokens) < num_vertices*3:
                     continue
@@ -757,8 +779,7 @@ def f280_cooling_load_from_idf(idf_path: str, **overrides):
         ag_walls_rsi, attic_rsi, windows_u, shgc, ach,
         outdoor_cooling_temp, indoor_cooling_temp, daily_temp_range,
         latitude_deg, longitude_deg, natural_ach, PVC_l_s, bedrooms,
-        duct_location, duct_rsi, shading_factor_global, latent_multiplier,
-        occupant_latent_W.
+        duct_location, duct_rsi, shading_factor_global, latent_multiplier.
     Returns: dict of load components and sizing values.
     """
     idf_path_obj = Path(idf_path)
@@ -890,7 +911,6 @@ def _run_cli():
     parser.add_argument('--bedrooms', type=int, help='Number of bedrooms (for occupant count)')
     parser.add_argument('--latent-multiplier', type=float, help='Latent multiplier for CSCn (default 1.3)')
     parser.add_argument('--shading-factor', type=float, help='Global shading factor (0-1)')
-    parser.add_argument('--occupant-latent-w', type=float, help='Occupant latent load per person (W) override')
     args = parser.parse_args()
 
     overrides = {}
@@ -898,7 +918,7 @@ def _run_cli():
         ('ag_walls_rsi','ag_walls_rsi'),('attic_rsi','attic_rsi'),('windows_u','windows_u'),('shgc','shgc'),
         ('latitude','latitude_deg'),('longitude','longitude_deg'),('dtr','daily_temp_range'),('tic','indoor_cooling_temp'),('toc','outdoor_cooling_temp'),
         ('natural_ach','natural_ach'),('ventilation_lps','PVC_l_s'),('duct_location','duct_location'),('duct_rsi','duct_rsi'),
-        ('bedrooms','bedrooms'),('latent_multiplier','latent_multiplier'),('shading_factor','shading_factor_global'),('occupant_latent_w','occupant_latent_W')]:
+        ('bedrooms','bedrooms'),('latent_multiplier','latent_multiplier'),('shading_factor','shading_factor_global')]:
         val = getattr(args, arg_key.replace('-','_'))
         if val is not None:
             overrides[override_key] = val
