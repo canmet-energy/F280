@@ -1,0 +1,565 @@
+Station_Name,Latitude,Longitude,URL,CDD10,solar,Tdb,Twb,HDD18
+Abee AgDM,54.28,-112.97,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Abee.AgDM.712850_CWEC2020.zip,678,225,26,19,5905
+Andrew AgDM,53.92,-112.28,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Andrew.AgDM.712860_CWEC2020.zip,746,224,27,20,5858
+Atmore AgDM,54.78,-112.82,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Atmore.AgDM.712870_CWEC2020.zip,693,220,27,18,5836
+Banff CS,51.19,-115.55,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Banff.CS.711220_CWEC2020.zip,540,182,28,16,5661
+Barnwell AgDM,49.8,-112.3,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Barnwell.AgDM.713460_CWEC2020.zip,978,262,31,19,4537
+Barrhead CS,54.09,-114.45,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Barrhead.CS.710610_CWEC2020.zip,750,221,26,18,5689
+Beaverlodge RCS,55.2,-119.4,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Beaverlodge.RCS.712300_CWEC2020.zip,611,203,26,15,5629
+Blood Tribe AgDM,49.57,-113.05,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Blood.Tribe.AgDM.715170_CWEC2020.zip,876,249,30,19,4742
+Bodo AgDM,52.12,-110.1,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Bodo.AgDM.712140_CWEC2020.zip,868,239,28,20,5368
+Bow Island Irrigation AgDM,49.87,-111.38,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Bow.Island.Irrigation.AgDM.715190_CWEC2020.zip,1030,253,32,19,4637
+Bow Island,49.73,-111.45,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Bow.Island.712310_CWEC2020.zip,1031,264,31,20,4626
+Bow Valley,51.08,-115.07,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Bow.Valley.712320_CWEC2020.zip,648,213,28,17,5145
+Breton Plots,53.09,-114.44,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Breton.Plots.712330_CWEC2020.zip,715,223,28,18,5188
+Brocket AgDM,49.62,-113.82,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Brocket.AgDM.713410_CWEC2020.zip,847,261,30,17,4566
+Brooks,50.56,-111.85,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Brooks.714570_CWEC2020.zip,1023,249,31,20,4919
+Calgary Intl AP,51.11,-114.02,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Calgary.Intl.AP.718770_CWEC2020.zip,769,229,29,17,4981
+Camrose,53.03,-112.81,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Camrose.712540_CWEC2020.zip,736,220,26,21,5583
+Cardston,49.2,-113.29,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Cardston.711530_CWEC2020.zip,909,257,31,19,4588
+Champion AgDM,50.28,-113.35,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Champion.AgDM.712170_CWEC2020.zip,873,258,29,18,5071
+Claresholm,50,-113.64,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Claresholm.712340_CWEC2020.zip,925,236,32,18,4856
+Cleardale AgDM,56.31,-119.74,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Cleardale.AgDM.712210_CWEC2020.zip,674,212,28,18,5933
+Cold Lake AP,54.42,-110.23,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Cold.Lake.AP.711200_CWEC2020.zip,856,200,29,20,5680
+Consort AgDM,51.94,-110.71,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Consort.AgDM.712230_CWEC2020.zip,800,230,31,19,5583
+Cop Upper,51.08,-114.22,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Cop.Upper.712350_CWEC2020.zip,726,234,27,16,4998
+Coronation Climate,52.07,-111.45,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Coronation.Climate.713180_CWEC2020.zip,758,220,30,19,5816
+Crowsnest,49.63,-114.48,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Crowsnest.712360_CWEC2020.zip,683,227,27,16,5097
+Dapp AgDM,54.32,-113.95,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Dapp.AgDM.713400_CWEC2020.zip,682,212,25,20,6102
+Del Bonita AgDM,49.05,-112.82,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Del.Bonita.AgDM.712240_CWEC2020.zip,734,256,28,19,4979
+Drumheller East,51.45,-112.68,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Drumheller.East.712370_CWEC2020.zip,973,225,32,19,5218
+Edmonton City Centre AWOS,53.57,-113.52,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Edmonton.City.Centre.AWOS.718790_CWEC2020.zip,889,218,27,20,4963
+Edmonton Intl AP,53.31,-113.58,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Edmonton.Intl.AP.711230_CWEC2020.zip,723,226,26,20,5514
+Edmonton Stony Plain CS,53.55,-114.11,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Edmonton.Stony.Plain.CS.711270_CWEC2020.zip,774,226,26,19,5272
+Edson Climate,53.58,-116.45,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Edson.Climate.711560_CWEC2020.zip,606,198,26,18,5768
+Elk Island Nat Park,53.68,-112.87,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Elk.Island.Nat.Park.712380_CWEC2020.zip,769,212,27,20,5663
+Enchant AgDM,50.18,-112.43,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Enchant.AgDM.715180_CWEC2020.zip,976,257,30,21,4676
+Esther,51.67,-110.21,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Esther.712400_CWEC2020.zip,948,225,30,19,5353
+Fairview AgDM,56.08,-118.44,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Fairview.AgDM.713470_CWEC2020.zip,667,204,27,17,6053
+Fincastle AgDM,49.8,-112.03,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Fincastle.AgDM.715350_CWEC2020.zip,1022,262,31,19,4565
+Foremost AgDM,49.48,-111.49,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Foremost.AgDM.712250_CWEC2020.zip,1020,259,32,18,4662
+Fort Chipewyan,58.77,-111.12,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Fort.Chipewyan.713050_CWEC2020.zip,813,191,28,18,6837
+Fort Mcmurray AP,56.65,-111.22,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Fort.Mcmurray.AP.716890_CWEC2020.zip,854,192,28,19,6117
+Fort Vermilion,58.38,-116.04,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Fort.Vermilion.710240_CWEC2020.zip,949,198,28,20,6207
+Garden River,58.71,-113.87,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Garden.River.712530_CWEC2020.zip,801,186,28,19,6618
+Grande Prairie AP,55.18,-118.88,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Grande.Prairie.AP.719400_CWEC2020.zip,736,198,32,19,5799
+Hendrickson Creek,53.8,-118.45,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Hendrickson.Creek.719790_CWEC2020.zip,334,152,23,14,6542
+High Level,58.62,-117.17,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_High.Level.710660_CWEC2020.zip,723,198,25,17,6862
+High Prairie AgDM,55.4,-116.48,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_High.Prairie.AgDM.712260_CWEC2020.zip,715,214,26,17,5624
+Holden AgDM,53.19,-112.25,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Holden.AgDM.712270_CWEC2020.zip,756,224,29,19,5573
+Hussar AgDM,51.18,-112.5,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Hussar.AgDM.713440_CWEC2020.zip,737,234,30,19,5220
+Iron Springs AgDM,49.9,-112.73,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Iron.Springs.AgDM.715280_CWEC2020.zip,966,244,30,20,4635
+Jasper Warden,52.93,-118.03,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Jasper.Warden.714860_CWEC2020.zip,622,178,29,16,5529
+Killam AgDM,52.85,-111.87,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Killam.AgDM.712280_CWEC2020.zip,796,228,30,19,5501
+Lac La Biche Climate,54.77,-112.02,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Lac.La.Biche.Climate.713160_CWEC2020.zip,752,214,27,18,5546
+Lacombe CDA,52.45,-113.76,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Lacombe.CDA.712420_CWEC2020.zip,726,223,27,20,5525
+Lethbridge CDA,49.7,-112.77,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Lethbridge.CDA.712430_CWEC2020.zip,1095,251,33,22,4325
+Lethbridge Demo Farm AgDM,49.68,-112.75,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Lethbridge.Demo.Farm.AgDM.715090_CWEC2020.zip,967,247,30,20,4562
+Lloydminster AP,53.31,-110.07,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Lloydminster.AP.718710_CWEC2020.zip,804,232,28,20,5741
+Manning AgDM,56.97,-117.45,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Manning.AgDM.712290_CWEC2020.zip,743,219,28,18,6441
+Masinasin AgDM,49.14,-111.65,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Masinasin.AgDM.713450_CWEC2020.zip,1086,255,33,18,4628
+Medicine Hat RCS,50.03,-110.72,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Medicine.Hat.RCS.710260_CWEC2020.zip,1182,262,33,23,4668
+Mildred Lake,57.04,-111.56,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Mildred.Lake.712550_CWEC2020.zip,883,192,28,20,5833
+Milk River,49.13,-112.05,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Milk.River.712440_CWEC2020.zip,933,254,32,18,4799
+Morrin AgDM,51.66,-112.67,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Morrin.AgDM.712570_CWEC2020.zip,770,225,31,19,5427
+Mundare AgDM,53.57,-112.3,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Mundare.AgDM.713540_CWEC2020.zip,736,225,27,20,5703
+Nakiska Ridgetop,50.94,-115.19,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Nakiska.Ridgetop.712450_CWEC2020.zip,110,192,18,11,7165
+Nordegg CS,52.49,-116.04,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Nordegg.CS.710600_CWEC2020.zip,522,202,27,16,5718
+Olds AgDM,51.76,-114.08,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Olds.AgDM.712580_CWEC2020.zip,620,221,27,19,5133
+Oliver AgDM,53.65,-113.35,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Oliver.AgDM.713510_CWEC2020.zip,803,222,27,20,5272
+Onefour CDA,49.12,-110.47,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Onefour.CDA.711160_CWEC2020.zip,1081,265,34,19,4880
+Oyen AgDM,51.38,-110.35,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Oyen.AgDM.713420_CWEC2020.zip,881,221,30,19,5436
+Peace River AP,56.23,-117.45,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Peace.River.AP.710680_CWEC2020.zip,735,212,30,19,6029
+Peoria AgDM,55.62,-118.29,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Peoria.AgDM.713480_CWEC2020.zip,700,204,26,19,5842
+Pincher Creek,49.52,-114,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Pincher.Creek.710850_CWEC2020.zip,807,258,28,18,4760
+Pollockville AgDM,51.13,-111.71,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Pollockville.AgDM.712590_CWEC2020.zip,966,232,31,20,5362
+Prentiss,52.43,-113.6,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Prentiss.713530_CWEC2020.zip,648,219,27,19,5348
+Raymond AgDM,49.48,-112.68,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Raymond.AgDM.715360_CWEC2020.zip,930,252,29,21,4522
+Red Deer Regional AP,52.18,-113.89,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Red.Deer.Regional.AP.718780_CWEC2020.zip,713,220,27,19,5627
+Red Earth,56.55,-115.28,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Red.Earth.712460_CWEC2020.zip,718,205,28,18,6140
+Rich Lake AgDM,54.5,-111.7,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Rich.Lake.AgDM.713490_CWEC2020.zip,696,218,28,19,5916
+Rocky Mtn House AUT,52.42,-114.91,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Rocky.Mtn.House.AUT.719280_CWEC2020.zip,617,221,28,17,5896
+Schuler AgDM,50.31,-110.09,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Schuler.AgDM.712690_CWEC2020.zip,959,246,30,19,5203
+Seven Persons AgDM,49.92,-110.92,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Seven.Persons.AgDM.715250_CWEC2020.zip,1002,252,29,21,4903
+Slave Lake,55.29,-114.78,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Slave.Lake.713690_CWEC2020.zip,671,204,27,18,5832
+Smoky Lake AgDM,54.28,-112.5,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Smoky.Lake.AgDM.712740_CWEC2020.zip,646,228,25,19,5852
+Spirit River Auto Station,55.69,-119.23,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Spirit.River.Auto.Station.715710_CWEC2020.zip,472,189,24,18,5738
+St Paul AgCM,54.01,-111.27,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_St.Paul.AgCM.712750_CWEC2020.zip,693,219,28,19,5851
+Stavely Aafc,50.18,-113.88,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Stavely.Aafc.715550_CWEC2020.zip,699,241,27,16,4917
+Stettler AgDM,52.35,-112.6,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Stettler.AgDM.712890_CWEC2020.zip,697,226,29,19,5370
+Strathmore AgDM,51.03,-113.28,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Strathmore.AgDM.715260_CWEC2020.zip,746,234,27,18,4977
+Sundre AP,51.78,-114.68,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Sundre.AP.712480_CWEC2020.zip,684,217,28,18,5578
+Three Hills,51.77,-113.21,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Three.Hills.712490_CWEC2020.zip,748,226,29,19,5455
+Two Hills AgDM,53.63,-111.68,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Two.Hills.AgDM.712760_CWEC2020.zip,727,220,27,19,5673
+Valleyview AgDM,55.1,-117.2,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Valleyview.AgDM.712770_CWEC2020.zip,691,213,26,19,5425
+Vauxhall CDA CS,50.05,-112.13,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Vauxhall.CDA.CS.712510_CWEC2020.zip,1033,258,32,25,4803
+Vegreville,53.51,-112.1,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Vegreville.714580_CWEC2020.zip,821,219,28,20,5579
+Vermilion AgDM,53.34,-110.88,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Vermilion.AgDM.712780_CWEC2020.zip,786,220,29,20,5561
+Violet Grove CS,53.14,-115.13,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Violet.Grove.CS.710620_CWEC2020.zip,696,209,29,19,5252
+Wainwright CFB Airfield,52.83,-111.1,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Wainwright.CFB.Airfield.711180_CWEC2020.zip,889,218,30,19,5514
+Waterton Park Gate,49.13,-113.81,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Waterton.Park.Gate.711540_CWEC2020.zip,786,231,30,18,4694
+Whitecourt AP,54.14,-115.79,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Whitecourt.AP.719300_CWEC2020.zip,662,218,28,19,5604
+Willow Creek,53.39,-118.35,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Willow.Creek.712520_CWEC2020.zip,367,154,24,14,6616
+Wrentham AgDM,49.5,-112.12,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/AB_Alberta/CAN_AB_Wrentham.AgDM.713430_CWEC2020.zip,902,255,31,18,4601
+Abbotsford AP,49.03,-122.36,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Abbotsford.AP.711080_CWEC2020.zip,1049,212,30,20,2961
+Agassiz RCS,49.24,-121.76,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Agassiz.RCS.711130_CWEC2020.zip,1122,177,30,20,2989
+Ballenas Island,49.35,-124.16,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Ballenas.Island.717690_CWEC2020.zip,988,227,24,20,2578
+Blue River CS,52.13,-119.29,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Blue.River.CS.718830_CWEC2020.zip,692,168,31,19,5086
+Bonilla Island AUT,53.49,-130.64,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Bonilla.Island.AUT.714840_CWEC2020.zip,299,130,16,16,3497
+Burns Lake Decker Lake,54.38,-125.96,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Burns.Lake.Decker.Lake.719520_CWEC2020.zip,499,164,26,17,5775
+Callaghan Valley,50.14,-123.11,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Callaghan.Valley.716880_CWEC2020.zip,493,186,29,16,4756
+Cape St James,51.94,-131.02,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Cape.St.James.711070_CWEC2020.zip,362,135,16,15,3380
+Cathedral Point AUT,52.19,-127.47,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Cathedral.Point.AUT.714820_CWEC2020.zip,636,131,23,17,3495
+Clinton AUT,51.12,-121.5,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Clinton.AUT.714740_CWEC2020.zip,661,178,30,17,5207
+Comox AP,49.72,-124.9,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Comox.AP.718930_CWEC2020.zip,944,208,25,18,2994
+Cranbrook AP,49.61,-115.78,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Cranbrook.AP.718800_CWEC2020.zip,975,235,31,18,4519
+Creston Campbell Scientific,49.08,-116.5,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Creston.Campbell.Scientific.717700_CWEC2020.zip,1225,239,32,23,3764
+Cumshewa Island,53.03,-131.6,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Cumshewa.Island.717710_CWEC2020.zip,401,114,17,15,3365
+Dawson Creek AP,55.74,-120.18,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Dawson.Creek.AP.714710_CWEC2020.zip,772,201,31,18,5715
+Dease Lake AUT,58.43,-130.03,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Dease.Lake.AUT.712220_CWEC2020.zip,359,115,24,14,6887
+Discovery Island,48.42,-123.23,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Discovery.Island.710310_CWEC2020.zip,652,232,24,24,2723
+Entrance Island,49.21,-123.81,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Entrance.Island.717720_CWEC2020.zip,953,222,22,18,2588
+Esquimalt Harbour,48.43,-123.44,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Esquimalt.Harbour.717980_CWEC2020.zip,649,228,24,16,2986
+Estevan Point CS,49.38,-126.54,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Estevan.Point.CS.718940_CWEC2020.zip,534,176,18,17,3087
+Fanny Island,50.45,-125.99,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Fanny.Island.715680_CWEC2020.zip,411,167,18,15,3389
+Fort Nelson AP,58.84,-122.6,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Fort.Nelson.AP.719450_CWEC2020.zip,719,151,28,17,6639
+Fort St John AP,56.24,-120.74,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Fort.St.John.AP.719430_CWEC2020.zip,653,197,27,18,5842
+Grey Islet AUT,54.58,-130.7,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Grey.Islet.AUT.714760_CWEC2020.zip,370,118,17,15,3638
+Herbert Island AUT,50.94,-127.63,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Herbert.Island.AUT.714850_CWEC2020.zip,275,118,15,14,3382
+Holland Rock,54.17,-130.36,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Holland.Rock.712190_CWEC2020.zip,309,106,15,13,3606
+Hope AP,49.37,-121.5,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Hope.AP.711870_CWEC2020.zip,1178,184,30,20,3062
+Howe Sound Pam Rocks,49.49,-123.3,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Howe.Sound.Pam.Rocks.712110_CWEC2020.zip,1017,208,23,19,2714
+Kamloops AP,50.7,-120.45,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Kamloops.AP.718870_CWEC2020.zip,1475,204,35,20,3483
+Kelowna,49.96,-119.38,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Kelowna.712030_CWEC2020.zip,1241,226,34,21,3841
+Kindakun Rocks AUT,53.32,-132.77,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Kindakun.Rocks.AUT.714720_CWEC2020.zip,350,114,15,14,3358
+Langara Island RCS,54.26,-133.06,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Langara.Island.RCS.719030_CWEC2020.zip,316,85,15,15,3692
+Lillooet,50.68,-121.93,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Lillooet.719990_CWEC2020.zip,1583,173,36,27,3473
+Lucy Island Lightstation,54.3,-130.61,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Lucy.Island.Lightstation.712200_CWEC2020.zip,325,103,15,15,3661
+Lytton RCS,50.22,-121.58,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Lytton.RCS.717650_CWEC2020.zip,1465,209,35,20,3351
+Mackenzie,55.3,-123.13,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Mackenzie.712900_CWEC2020.zip,594,150,25,16,5378
+Malahat,48.57,-123.53,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Malahat.717740_CWEC2020.zip,877,211,24,20,3229
+Nakusp CS,50.27,-117.82,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Nakusp.CS.712160_CWEC2020.zip,974,189,31,21,3919
+Nelson CS,49.49,-117.31,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Nelson.CS.717760_CWEC2020.zip,1078,225,31,22,3731
+Osoyoos CS,49.03,-119.44,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Osoyoos.CS.712150_CWEC2020.zip,1614,242,36,22,3219
+Pemberton Airport CS,50.31,-122.73,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Pemberton.Airport.CS.717770_CWEC2020.zip,1048,177,34,21,3932
+Penticton AP,49.46,-119.6,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Penticton.AP.718890_CWEC2020.zip,1383,221,33,20,3406
+Pitt Meadows CS,49.21,-122.69,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Pitt.Meadows.CS.717750_CWEC2020.zip,1083,184,26,19,2995
+Point Atkinson,49.33,-123.26,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Point.Atkinson.710370_CWEC2020.zip,1171,229,27,25,2363
+Port Hardy AP,50.68,-127.37,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Port.Hardy.AP.711090_CWEC2020.zip,449,141,19,16,3487
+Prince George,53.89,-122.67,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Prince.George.718960_CWEC2020.zip,652,166,27,18,5045
+Prince Rupert,54.29,-130.44,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Prince.Rupert.710220_CWEC2020.zip,401,123,18,15,3773
+Princeton CS,49.47,-120.51,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Princeton.CS.710320_CWEC2020.zip,1011,200,32,19,4534
+Puntzi Mountain AUT,52.11,-124.14,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Puntzi.Mountain.AUT.710500_CWEC2020.zip,671,180,30,16,5754
+Quesnel,53.03,-122.51,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Quesnel.711920_CWEC2020.zip,801,166,30,19,4811
+Revelstoke AP,50.97,-118.18,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Revelstoke.AP.716850_CWEC2020.zip,895,182,31,19,4240
+Rose Spit AUT,54.16,-131.66,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Rose.Spit.AUT.714770_CWEC2020.zip,358,112,16,15,3545
+Salmon Arm CS,50.7,-119.29,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Salmon.Arm.CS.712180_CWEC2020.zip,1170,188,31,22,3748
+Sandheads CS,49.11,-123.3,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Sandheads.CS.712090_CWEC2020.zip,920,232,23,21,2674
+Sandspit,53.25,-131.81,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Sandspit.711110_CWEC2020.zip,508,111,18,16,3402
+Sartine Island AUT,50.82,-128.91,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Sartine.Island.AUT.714780_CWEC2020.zip,296,146,15,14,3378
+Saturna Island CS,48.78,-123.04,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Saturna.Island.CS.714730_CWEC2020.zip,949,223,24,19,2604
+Sheringham Point,48.38,-123.92,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Sheringham.Point.717800_CWEC2020.zip,476,212,16,15,3015
+Sisters Island,49.49,-124.43,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Sisters.Island.717810_CWEC2020.zip,956,214,23,18,2606
+Smithers,54.83,-127.18,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Smithers.719500_CWEC2020.zip,548,138,27,19,5075
+Solander Island AUT,50.11,-127.94,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Solander.Island.AUT.714790_CWEC2020.zip,346,174,16,15,3297
+Sparwood CS,49.75,-114.88,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Sparwood.CS.717820_CWEC2020.zip,718,218,30,17,5127
+Squamish Airport,49.78,-123.16,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Squamish.Airport.712070_CWEC2020.zip,984,186,31,21,3350
+Summerland CS,49.56,-119.65,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Summerland.CS.717680_CWEC2020.zip,1390,198,34,19,3529
+Tatlayoko Lake RCS,51.67,-124.4,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Tatlayoko.Lake.RCS.710280_CWEC2020.zip,606,193,29,15,5128
+Terrace AP,54.47,-128.58,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Terrace.AP.719510_CWEC2020.zip,665,143,28,18,4268
+Vancouver Intl AP,49.19,-123.18,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Vancouver.Intl.AP.718920_CWEC2020.zip,1009,218,23,19,2810
+Vernon Auto,50.22,-119.19,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Vernon.Auto.711150_CWEC2020.zip,1185,223,34,20,3914
+Victoria Gonzales CS,48.41,-123.32,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Victoria.Gonzales.CS.712000_CWEC2020.zip,703,228,22,16,2881
+Victoria Hartland CS,48.53,-123.46,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Victoria.Hartland.CS.710380_CWEC2020.zip,1017,215,28,21,2846
+Victoria Intl AP,48.65,-123.43,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Victoria.Intl.AP.717990_CWEC2020.zip,898,207,29,20,2929
+Victoria University CS,48.46,-123.3,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Victoria.University.CS.717830_CWEC2020.zip,907,227,27,20,2792
+Warfield RCS,49.11,-117.74,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Warfield.RCS.714010_CWEC2020.zip,1209,238,33,21,3910
+West Vancouver AUT,49.35,-123.19,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_West.Vancouver.AUT.717840_CWEC2020.zip,972,199,28,21,3032
+Whistler Nesters,50.13,-122.95,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Whistler.Nesters.716870_CWEC2020.zip,771,183,30,17,4365
+White Rock CS,49.02,-122.78,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_White.Rock.CS.717850_CWEC2020.zip,977,213,24,18,2731
+Williams Lake AP,52.18,-122.05,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Williams.Lake.AP.711040_CWEC2020.zip,677,178,29,17,4854
+Yoho Park,51.44,-116.36,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/BC_British_Columbia/CAN_BC_Yoho.Park.717860_CWEC2020.zip,318,175,26,16,6617
+Berens River CS,52.36,-97.02,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Berens.River.CS.711580_CWEC2020.zip,850,209,28,21,6217
+Brandon AP,49.91,-99.95,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Brandon.AP.711400_CWEC2020.zip,1005,232,27,21,5839
+Carberry CS,49.91,-99.36,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Carberry.CS.711700_CWEC2020.zip,968,216,28,22,5775
+Carman U Of M CS,49.5,-98.03,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Carman.U.Of.M.CS.711470_CWEC2020.zip,1074,220,29,24,5585
+Churchill AP,58.74,-94.07,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Churchill.AP.716180_CWEC2020.zip,274,139,24,18,8486
+Dauphin,51.1,-100.05,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Dauphin.710360_CWEC2020.zip,988,194,29,23,5607
+Deerwood RCS,49.4,-98.32,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Deerwood.RCS.718400_CWEC2020.zip,1132,232,29,23,5389
+Delta Marsh CS,50.18,-98.38,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Delta.Marsh.CS.715630_CWEC2020.zip,972,207,29,23,5831
+Emerson Auto,49.01,-97.24,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Emerson.Auto.715600_CWEC2020.zip,1179,221,30,23,5367
+Fisher Branch AUT,51.08,-97.55,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Fisher.Branch.AUT.714420_CWEC2020.zip,930,206,28,21,5728
+Flin Flon,54.68,-101.68,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Flin.Flon.719540_CWEC2020.zip,862,202,27,19,6284
+George Island AUT,52.82,-97.62,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_George.Island.AUT.714450_CWEC2020.zip,847,209,25,21,6110
+Gillam AP,56.36,-94.71,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Gillam.AP.719120_CWEC2020.zip,582,174,27,21,7792
+Gimli Climate,50.63,-97.05,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Gimli.Climate.717480_CWEC2020.zip,981,215,28,22,5770
+Gimli Harbour CS,50.63,-96.98,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Gimli.Harbour.CS.715770_CWEC2020.zip,974,199,27,24,5620
+Grand Rapids AUT,53.19,-99.27,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Grand.Rapids.AUT.718580_CWEC2020.zip,769,213,26,19,6490
+Gretna AUT,49.03,-97.56,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Gretna.AUT.714410_CWEC2020.zip,1134,216,30,23,5383
+Island Lake AP,53.86,-94.65,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Island.Lake.AP.711450_CWEC2020.zip,788,199,29,21,6746
+Kelsey Dam CS,56.04,-96.51,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Kelsey.Dam.CS.715720_CWEC2020.zip,662,175,27,19,7500
+Lynn Lake,56.86,-101.08,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Lynn.Lake.710780_CWEC2020.zip,647,177,28,18,7390
+Mccreary,50.71,-99.53,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Mccreary.711490_CWEC2020.zip,1000,199,29,23,5371
+Melita,49.28,-100.99,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Melita.714470_CWEC2020.zip,1054,232,30,23,5450
+Morden CDA CS,49.19,-98.08,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Morden.CDA.CS.715640_CWEC2020.zip,1200,223,29,22,5268
+Norway House,53.96,-97.85,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Norway.House.714100_CWEC2020.zip,795,210,28,21,6606
+Oakpoint Marine,50.5,-98.04,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Oakpoint.Marine.711440_CWEC2020.zip,989,221,27,22,5753
+Pilot Mound AUT,49.19,-98.9,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Pilot.Mound.AUT.711480_CWEC2020.zip,944,227,27,23,5730
+Pinawa,50.18,-96.06,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Pinawa.714480_CWEC2020.zip,988,192,29,22,5729
+Portage Southport,49.9,-98.28,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Portage.Southport.718510_CWEC2020.zip,1066,220,28,24,5304
+Roblin,51.18,-101.36,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Roblin.715530_CWEC2020.zip,886,215,28,24,6115
+Shoal Lake CS,50.45,-100.6,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Shoal.Lake.CS.711500_CWEC2020.zip,847,211,27,21,5929
+Sprague,49.02,-95.6,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Sprague.714490_CWEC2020.zip,1037,211,29,23,5440
+Swan River RCS,52.11,-101.23,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Swan.River.RCS.714430_CWEC2020.zip,886,201,27,22,6058
+Tadoule Lake CS,58.72,-98.5,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Tadoule.Lake.CS.713340_CWEC2020.zip,461,165,26,17,8405
+The Pas AP,53.97,-101.09,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_The.Pas.AP.718670_CWEC2020.zip,863,217,28,21,6293
+Thompson AP,55.8,-97.86,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Thompson.AP.710790_CWEC2020.zip,686,183,28,19,7312
+Victoria Beach AUT,50.7,-96.57,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Victoria.Beach.AUT.715520_CWEC2020.zip,1084,222,28,23,5434
+Wasagaming,50.66,-99.94,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Wasagaming.714440_CWEC2020.zip,761,202,27,21,6268
+Winnipeg Intl AP,49.91,-97.24,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Winnipeg.Intl.AP.718520_CWEC2020.zip,1145,203,29,24,5454
+Winnipeg The Forks,49.89,-97.13,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/MB_Manitoba/CAN_MB_Winnipeg.The.Forks.715790_CWEC2020.zip,1248,211,30,24,5205
+Bas Caraquet,47.8,-64.83,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NB_New_Brunswick/CAN_NB_Bas.Caraquet.715980_CWEC2020.zip,894,191,28,22,4715
+Bathurst AP,47.63,-65.74,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NB_New_Brunswick/CAN_NB_Bathurst.AP.715740_CWEC2020.zip,935,187,27,21,4856
+Charlo Auto,47.99,-66.33,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NB_New_Brunswick/CAN_NB_Charlo.Auto.713150_CWEC2020.zip,819,183,26,20,5070
+Edmundston,47.42,-68.32,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NB_New_Brunswick/CAN_NB_Edmundston.715900_CWEC2020.zip,964,179,29,22,5327
+Fredericton,45.87,-66.54,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NB_New_Brunswick/CAN_NB_Fredericton.717000_CWEC2020.zip,1107,186,30,23,4450
+Grand Manan Sar CS,44.71,-66.8,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NB_New_Brunswick/CAN_NB_Grand.Manan.Sar.CS.710300_CWEC2020.zip,833,190,27,22,4228
+Miramichi RCS,47.01,-65.46,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NB_New_Brunswick/CAN_NB_Miramichi.RCS.717440_CWEC2020.zip,1056,187,29,22,4691
+Miscou Island AUT,48.01,-64.49,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NB_New_Brunswick/CAN_NB_Miscou.Island.AUT.717190_CWEC2020.zip,761,199,26,21,4811
+Moncton Intl AP,46.11,-64.68,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NB_New_Brunswick/CAN_NB_Moncton.Intl.AP.717050_CWEC2020.zip,1027,167,29,21,4521
+Point Lepreau CS,45.07,-66.45,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NB_New_Brunswick/CAN_NB_Point.Lepreau.CS.716990_CWEC2020.zip,639,179,20,18,4175
+Saint John AP,45.32,-65.89,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NB_New_Brunswick/CAN_NB_Saint.John.AP.716090_CWEC2020.zip,856,173,25,20,4420
+St Leonard CS,47.16,-67.83,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NB_New_Brunswick/CAN_NB_St.Leonard.CS.710190_CWEC2020.zip,905,183,27,22,5178
+St Stephen,45.22,-67.25,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NB_New_Brunswick/CAN_NB_St.Stephen.716070_CWEC2020.zip,1067,180,28,21,4437
+Argentia AUT,47.29,-53.99,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Argentia.AUT.718070_CWEC2020.zip,509,135,19,17,4332
+Badger AUT,48.97,-56.07,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Badger.AUT.714000_CWEC2020.zip,743,136,28,21,5058
+Bonavista,48.67,-53.11,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Bonavista.711780_CWEC2020.zip,559,154,25,20,4716
+Burgeo Nl,47.62,-57.62,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Burgeo.Nl.711520_CWEC2020.zip,501,146,20,17,4586
+Cape Race AUT,46.66,-53.08,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Cape.Race.AUT.718000_CWEC2020.zip,378,112,19,17,4698
+Cartwright AP,53.68,-57.04,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Cartwright.AP.718180_CWEC2020.zip,339,145,22,16,6254
+Churchill Falls,53.56,-64.07,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Churchill.Falls.710020_CWEC2020.zip,418,146,24,17,7295
+Corner Brook,48.93,-57.92,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Corner.Brook.719730_CWEC2020.zip,720,142,26,21,4859
+Daniels Harbour,50.24,-57.58,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Daniels.Harbour.711850_CWEC2020.zip,516,160,21,18,5121
+Deer Lake AP,49.21,-57.39,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Deer.Lake.AP.718090_CWEC2020.zip,716,149,26,20,4883
+Englee AUT,50.72,-56.11,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Englee.AUT.714170_CWEC2020.zip,393,139,23,18,5481
+Ferolle Point AUT,51.02,-57.1,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Ferolle.Point.AUT.714060_CWEC2020.zip,367,153,18,17,5543
+Gander Intl AP,48.94,-54.57,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Gander.Intl.AP.718030_CWEC2020.zip,683,138,25,18,4892
+Goose AP,53.32,-60.42,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Goose.AP.718160_CWEC2020.zip,599,144,26,19,6287
+Hopedale AUT,55.45,-60.22,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Hopedale.AUT.719000_CWEC2020.zip,208,156,22,16,7031
+La Scie,49.92,-55.67,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_La.Scie.713370_CWEC2020.zip,536,146,25,18,5343
+Marys Harbour AP,52.3,-55.85,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Marys.Harbour.AP.713390_CWEC2020.zip,351,154,23,16,6116
+Port Aux Basques,47.57,-59.15,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Port.Aux.Basques.711970_CWEC2020.zip,530,158,20,18,4652
+Rocky Harbour CS,49.57,-57.88,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Rocky.Harbour.CS.715880_CWEC2020.zip,624,156,24,20,4928
+Sagona Island,47.37,-55.79,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Sagona.Island.714080_CWEC2020.zip,449,135,17,16,4530
+St Lawrence,46.92,-55.38,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_St.Lawrence.711100_CWEC2020.zip,585,150,21,19,4385
+St Johns Intl AP,47.62,-52.75,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_St.Johns.Intl.AP.718010_CWEC2020.zip,641,153,24,20,4603
+Stephenville AP,48.53,-58.55,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Stephenville.AP.718150_CWEC2020.zip,703,172,23,21,4584
+Terra Nova Nat Park CS,48.56,-53.97,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Terra.Nova.Nat.Park.CS.715890_CWEC2020.zip,665,144,26,20,4813
+Twillingate AUT,49.68,-54.8,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Twillingate.AUT.714020_CWEC2020.zip,551,148,24,19,5004
+Wabush AP,52.92,-66.86,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Wabush.AP.718250_CWEC2020.zip,415,140,24,16,7268
+Winterland,47.14,-55.33,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Winterland.711810_CWEC2020.zip,598,155,23,20,4422
+Wreckhouse,47.71,-59.31,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NL_Newfoundland_and_Labrador/CAN_NL_Wreckhouse.711800_CWEC2020.zip,679,175,22,19,4442
+Beaver Island AUT,44.82,-62.33,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Beaver.Island.AUT.714030_CWEC2020.zip,685,152,20,18,4033
+Bedford Basin,44.71,-63.63,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Bedford.Basin.713290_CWEC2020.zip,1031,164,25,20,3759
+Bedford Range,44.75,-63.66,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Bedford.Range.713250_CWEC2020.zip,1041,162,27,21,3961
+Brier Island,44.29,-66.35,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Brier.Island.719880_CWEC2020.zip,631,190,20,17,3766
+Caribou Point AUT,45.77,-62.68,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Caribou.Point.AUT.714150_CWEC2020.zip,1038,164,27,22,4055
+Cheticamp CS,46.65,-60.95,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Cheticamp.CS.719590_CWEC2020.zip,1003,167,27,23,4120
+Debert,45.43,-63.47,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Debert.713170_CWEC2020.zip,961,164,27,22,4395
+Grand Etang,46.55,-61.05,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Grand.Etang.730300_CWEC2020.zip,1025,174,26,23,4046
+Greenwood AP,44.98,-64.92,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Greenwood.AP.713970_CWEC2020.zip,1210,179,28,22,3898
+Halifax Dockyard,44.66,-63.58,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Halifax.Dockyard.713280_CWEC2020.zip,1000,160,29,21,3769
+Halifax Intl AP,44.88,-63.51,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Halifax.Intl.AP.713950_CWEC2020.zip,1020,158,28,23,4033
+Hart Island AUT,45.35,-60.98,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Hart.Island.AUT.714190_CWEC2020.zip,805,151,22,20,4007
+Ingonish Beach RCS,46.66,-60.41,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Ingonish.Beach.RCS.710270_CWEC2020.zip,916,165,28,23,4290
+Kejimkujik,44.4,-65.2,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Kejimkujik.715990_CWEC2020.zip,1083,175,28,22,4057
+Kentville CDA CS,45.07,-64.48,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Kentville.CDA.CS.716710_CWEC2020.zip,1167,170,28,23,3990
+Lunenburg,44.36,-64.3,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Lunenburg.710415_CWEC2020.zip,901,165,24,19,3770
+Malay Falls,44.98,-62.48,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Malay.Falls.730290_CWEC2020.zip,979,160,27,22,4243
+Mcnabs Island AUT,44.6,-63.53,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Mcnabs.Island.AUT.715910_CWEC2020.zip,888,162,24,20,3898
+Nappan Auto,45.76,-64.24,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Nappan.Auto.713110_CWEC2020.zip,987,172,26,22,4253
+North Mountain CS,46.82,-60.67,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_North.Mountain.CS.716040_CWEC2020.zip,712,151,25,20,4967
+Northeast Margaree AUT,46.37,-60.98,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Northeast.Margaree.AUT.717367_CWEC2020.zip,874,154,28,22,4471
+Parrsboro,45.41,-64.35,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Parrsboro.714930_CWEC2020.zip,852,174,25,19,4382
+Sable Island AP,43.95,-59.96,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Sable.Island.AP.715950_CWEC2020.zip,877,164,20,19,3499
+Shearwater RCS,44.64,-63.51,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Shearwater.RCS.712640_CWEC2020.zip,1002,161,26,23,3847
+St Paul Island AUT,47.23,-60.14,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_St.Paul.Island.AUT.714180_CWEC2020.zip,652,169,22,19,4516
+Sydney AP,46.16,-60.05,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Sydney.AP.717070_CWEC2020.zip,874,160,27,21,4313
+Tracadie,45.61,-61.68,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Tracadie.713080_CWEC2020.zip,996,172,27,22,4149
+Western Head,43.99,-64.66,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Western.Head.714110_CWEC2020.zip,709,171,25,20,3982
+Yarmouth AP,43.83,-66.09,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NS_Nova_Scotia/CAN_NS_Yarmouth.AP.716030_CWEC2020.zip,807,182,23,20,3878
+Deadmen Valley,61.26,-124.47,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Deadmen.Valley.710210_CWEC2020.zip,668,130,29,18,7292
+Deline CS,65.21,-123.43,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Deline.CS.715030_CWEC2020.zip,384,211,23,17,8531
+Fort Good Hope CS,66.24,-128.64,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Fort.Good.Hope.CS.714910_CWEC2020.zip,682,199,27,19,8382
+Fort Liard,60.23,-123.47,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Fort.Liard.714970_CWEC2020.zip,763,166,26,19,6848
+Fort Providence,61.32,-117.6,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Fort.Providence.710870_CWEC2020.zip,733,207,28,18,7248
+Fort Reliance AUT,62.71,-109.17,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Fort.Reliance.AUT.711600_CWEC2020.zip,412,183,25,16,8465
+Fort Simpson AP,61.76,-121.24,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Fort.Simpson.AP.719460_CWEC2020.zip,770,197,27,18,7487
+Fort Smith AP,60.02,-111.96,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Fort.Smith.AP.719340_CWEC2020.zip,750,205,26,20,7002
+Hay River AP,60.84,-115.78,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Hay.River.AP.719350_CWEC2020.zip,620,199,28,19,7305
+Holman CS,70.76,-117.8,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Holman.CS.710290_CWEC2020.zip,124,252,22,14,10230
+Inner Whalebacks,61.92,-113.73,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Inner.Whalebacks.711620_CWEC2020.zip,309,205,20,17,7846
+Inuvik AP,68.3,-133.48,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Inuvik.AP.719570_CWEC2020.zip,402,210,25,17,8976
+Keats Point,69.67,-121.67,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Keats.Point.710580_CWEC2020.zip,140,202,19,13,9777
+Lac La Martre,63.13,-117.25,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Lac.La.Martre.711630_CWEC2020.zip,631,220,27,17,7914
+Lindburg Landing,61.13,-122.85,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Lindburg.Landing.716820_CWEC2020.zip,668,183,27,19,7471
+Little Chicago,67.18,-130.23,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Little.Chicago.711640_CWEC2020.zip,569,225,24,16,8649
+Liverpool Bay,69.6,-130.91,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Liverpool.Bay.719600_CWEC2020.zip,88,225,20,14,9929
+Lower Carp Lake,63.6,-113.86,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Lower.Carp.Lake.716800_CWEC2020.zip,497,189,24,17,8293
+Lutselke CS,62.42,-110.69,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Lutselke.CS.715290_CWEC2020.zip,476,190,25,16,8026
+Mould Bay CS,76.24,-119.35,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Mould.Bay.CS.719890_CWEC2020.zip,0,193,9,8,11960
+Norman Wells AP,65.28,-126.8,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Norman.Wells.AP.710430_CWEC2020.zip,672,188,28,19,8202
+Paulatuk,69.36,-124.08,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Paulatuk.719840_CWEC2020.zip,140,217,20,14,9537
+Pelly Island,69.63,-135.44,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Pelly.Island.715020_CWEC2020.zip,55,219,20,16,9646
+Rabbit Kettle,61.96,-127.21,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Rabbit.Kettle.719800_CWEC2020.zip,542,129,27,17,7859
+Sachs Harbour Climate,71.99,-125.25,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Sachs.Harbour.Climate.714670_CWEC2020.zip,37,230,18,14,10725
+Storm Hills,68.91,-133.94,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Storm.Hills.710520_CWEC2020.zip,199,205,22,16,9624
+Thomsen River,73.23,-119.54,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Thomsen.River.719160_CWEC2020.zip,53,248,19,13,11651
+Trail Valley,68.75,-133.5,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Trail.Valley.716830_CWEC2020.zip,295,221,24,16,9379
+Tuktoyaktuk,69.43,-133.02,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Tuktoyaktuk.719850_CWEC2020.zip,186,228,22,16,9773
+Yellowknife AP,62.46,-114.44,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Yellowknife.AP.719360_CWEC2020.zip,617,214,26,17,7960
+Yohin,61.24,-123.74,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NT_Northwest_Territories/CAN_NT_Yohin.710200_CWEC2020.zip,830,187,27,18,7074
+Alert Climate,82.5,-62.33,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Alert.Climate.713550_CWEC2020.zip,17,335,17,11,12295
+Arctic Bay CS,72.99,-85.01,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Arctic.Bay.CS.715920_CWEC2020.zip,20,257,14,10,10949
+Arviat Climate,61.1,-94.07,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Arviat.Climate.713220_CWEC2020.zip,119,169,20,15,9543
+Baker Lake AP,64.3,-96.08,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Baker.Lake.AP.719260_CWEC2020.zip,200,185,23,15,10205
+Brevoort Island,63.34,-64.15,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Brevoort.Island.710970_CWEC2020.zip,12,183,14,12,9401
+Broughton Island,67.54,-63.79,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Broughton.Island.710960_CWEC2020.zip,32,223,15,9,10117
+Cambridge Bay AP,69.11,-105.14,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Cambridge.Bay.AP.719250_CWEC2020.zip,59,197,17,14,11117
+Cape Dorset Climate,64.23,-76.53,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Cape.Dorset.Climate.715750_CWEC2020.zip,30,147,16,10,9210
+Cape Dyer,66.65,-61.38,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Cape.Dyer.710940_CWEC2020.zip,8,203,12,11,10018
+Cape Hooper,68.47,-66.82,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Cape.Hooper.710930_CWEC2020.zip,17,223,13,13,10279
+Cape Mercy,64.96,-63.58,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Cape.Mercy.719750_CWEC2020.zip,25,191,15,14,9715
+Cape Peel West,69.03,-107.82,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Cape.Peel.West.710640_CWEC2020.zip,73,207,17,9,10980
+Clyde River Climate,70.48,-68.52,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Clyde.River.Climate.713580_CWEC2020.zip,16,264,15,11,10554
+Coral Harbour AP,64.19,-83.36,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Coral.Harbour.AP.719150_CWEC2020.zip,105,149,22,14,10143
+Dewar Lakes,68.65,-71.17,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Dewar.Lakes.710920_CWEC2020.zip,17,191,15,12,10702
+Ennadai Lake AUT,61.13,-100.88,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Ennadai.Lake.AUT.719230_CWEC2020.zip,343,168,25,17,9068
+Eureka AP,79.99,-85.81,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Eureka.AP.719170_CWEC2020.zip,16,290,14,9,13028
+Gjoa Haven Climate,68.64,-95.85,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Gjoa.Haven.Climate.713630_CWEC2020.zip,51,239,15,10,11185
+Grise Fiord Climate,76.42,-82.9,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Grise.Fiord.Climate.719710_CWEC2020.zip,1,283,10,6,11594
+Hall Beach AP,68.78,-81.24,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Hall.Beach.AP.712930_CWEC2020.zip,11,224,14,11,11024
+Hat Island,68.32,-100.09,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Hat.Island.710840_CWEC2020.zip,26,266,14,11,11162
+Iqaluit AP,63.76,-68.56,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Iqaluit.AP.719090_CWEC2020.zip,48,140,21,14,9417
+Isachsen AUT,78.79,-103.55,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Isachsen.AUT.710740_CWEC2020.zip,8,193,13,10,11976
+Kugaaruk Climate,68.54,-89.8,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Kugaaruk.Climate.714070_CWEC2020.zip,70,203,18,13,11003
+Kugluktuk AP,67.82,-115.14,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Kugluktuk.AP.719380_CWEC2020.zip,143,203,22,15,9916
+Longstaff Bluff,68.9,-75.14,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Longstaff.Bluff.710910_CWEC2020.zip,22,216,15,12,10590
+Lupin CS,65.76,-111.25,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Lupin.CS.714700_CWEC2020.zip,222,204,24,15,9959
+Pangnirtung AP,66.15,-65.71,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Pangnirtung.AP.718260_CWEC2020.zip,23,238,13,9,9295
+Pond Inlet AP,72.69,-77.97,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Pond.Inlet.AP.710950_CWEC2020.zip,18,270,14,9,11147
+Qikiqtarjuaq Climate,67.55,-64.03,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Qikiqtarjuaq.Climate.713570_CWEC2020.zip,11,244,15,10,9961
+Rankin Inlet AP,62.81,-92.11,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Rankin.Inlet.AP.710830_CWEC2020.zip,94,155,19,14,9948
+Rea Point,75.38,-105.71,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Rea.Point.719830_CWEC2020.zip,0,215,9,7,11643
+Resolute Bay AP,74.72,-94.97,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Resolute.Bay.AP.719240_CWEC2020.zip,14,272,14,10,11773
+Resolution Island,61.58,-64.65,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Resolution.Island.719720_CWEC2020.zip,23,163,13,13,8956
+Rowley Island,69.08,-79.03,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Rowley.Island.710880_CWEC2020.zip,13,239,13,13,10310
+Shepherd Bay AP,68.82,-93.43,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Shepherd.Bay.AP.719110_CWEC2020.zip,80,221,19,11,11291
+Taloyoak AP,69.55,-93.58,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/NU_Nunavut/CAN_NU_Taloyoak.AP.715800_CWEC2020.zip,50,227,18,12,11253
+Algonquin Park East Gate,45.53,-78.27,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Algonquin.Park.East.Gate.715810_CWEC2020.zip,999,195,28,21,5065
+Armstrong AUT,50.29,-88.91,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Armstrong.AUT.718410_CWEC2020.zip,794,189,27,21,6307
+Atikokan AUT,48.76,-91.63,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Atikokan.AUT.717470_CWEC2020.zip,988,193,28,20,5418
+Bancroft Auto,45.07,-77.88,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Bancroft.Auto.712940_CWEC2020.zip,1094,185,30,23,4800
+Barrie Oro,44.48,-79.55,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Barrie.Oro.713140_CWEC2020.zip,1152,206,30,24,4442
+Big Trout Lake AP,53.82,-89.9,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Big.Trout.Lake.AP.716750_CWEC2020.zip,624,169,26,20,7027
+Borden AWOS,44.27,-79.91,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Borden.AWOS.715340_CWEC2020.zip,1291,208,30,22,4244
+Burlington Piers AUT,43.3,-79.8,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Burlington.Piers.AUT.714370_CWEC2020.zip,1473,197,29,22,3598
+Cameron Falls AUT,49.15,-88.34,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Cameron.Falls.AUT.712910_CWEC2020.zip,751,189,27,20,5657
+Cobourg AUT,43.95,-78.17,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Cobourg.AUT.714310_CWEC2020.zip,1172,212,25,22,3845
+Collingwood,44.5,-80.22,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Collingwood.712700_CWEC2020.zip,1336,202,30,24,3906
+Delhi CS,42.87,-80.55,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Delhi.CS.715730_CWEC2020.zip,1384,188,28,22,3724
+Dryden Regional,49.83,-92.74,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Dryden.Regional.715270_CWEC2020.zip,969,197,28,20,5568
+Ear Falls AUT,50.63,-93.22,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Ear.Falls.AUT.712950_CWEC2020.zip,871,181,27,20,5849
+Earlton AP,47.7,-79.85,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Earlton.AP.716840_CWEC2020.zip,904,181,30,22,5505
+Egbert CS,44.23,-79.78,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Egbert.CS.712960_CWEC2020.zip,1263,209,30,25,4224
+Elora RCS,43.65,-80.42,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Elora.RCS.713520_CWEC2020.zip,1135,189,28,23,4366
+Erieau AUT,42.25,-81.9,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Erieau.AUT.714650_CWEC2020.zip,1464,201,27,26,3355
+Geraldton AP,49.78,-86.94,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Geraldton.AP.718340_CWEC2020.zip,802,176,26,20,6121
+Goderich,43.77,-81.72,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Goderich.712610_CWEC2020.zip,1306,205,27,23,3815
+Gore Bay Climate,45.88,-82.57,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Gore.Bay.Climate.719560_CWEC2020.zip,1093,216,27,21,4339
+Hamilton AP,43.17,-79.93,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Hamilton.AP.712630_CWEC2020.zip,1310,214,30,23,3917
+Hamilton Rbg CS,43.29,-79.91,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Hamilton.Rbg.CS.712970_CWEC2020.zip,1484,198,33,25,3552
+Harrow CDA Auto,42.03,-82.9,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Harrow.CDA.Auto.712980_CWEC2020.zip,1615,199,30,24,3525
+Kapuskasing AP,49.41,-82.47,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Kapuskasing.AP.718310_CWEC2020.zip,796,177,29,22,6053
+Kemptville CS,45,-75.63,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Kemptville.CS.713000_CWEC2020.zip,1298,212,29,23,4277
+Kenora AP,49.79,-94.36,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Kenora.AP.718500_CWEC2020.zip,1055,202,29,21,5459
+Killarney AUT,45.97,-81.48,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Killarney.AUT.714600_CWEC2020.zip,932,212,25,19,4495
+Kirkland Lake CS,48.15,-80,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Kirkland.Lake.CS.713010_CWEC2020.zip,946,186,29,20,5843
+Lagoon City,44.55,-79.22,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Lagoon.City.712820_CWEC2020.zip,1193,202,26,23,4145
+Lansdowne House AUT,52.2,-87.94,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Lansdowne.House.AUT.718460_CWEC2020.zip,754,169,28,21,6679
+London AP,43.03,-81.15,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_London.AP.716230_CWEC2020.zip,1424,185,29,22,3720
+Moosonee,51.29,-80.61,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Moosonee.713980_CWEC2020.zip,697,170,29,22,6538
+Mount Forest AUT,43.98,-80.75,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Mount.Forest.AUT.716310_CWEC2020.zip,1071,186,27,22,4335
+Muskoka,44.97,-79.3,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Muskoka.715320_CWEC2020.zip,1100,194,28,24,4591
+Nagagami AUT,49.75,-84.16,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Nagagami.AUT.718320_CWEC2020.zip,840,179,29,21,6094
+North Bay AP,46.36,-79.42,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_North.Bay.AP.717310_CWEC2020.zip,994,187,28,23,4923
+Ottawa Intl AP,45.32,-75.67,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Ottawa.Intl.AP.716280_CWEC2020.zip,1328,207,29,23,4407
+Parry Sound CCG,45.34,-80.04,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Parry.Sound.CCG.711720_CWEC2020.zip,1159,203,27,22,4287
+Peawanuck AUT,54.99,-85.44,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Peawanuck.AUT.714340_CWEC2020.zip,430,157,26,20,7861
+Peterborough,44.23,-78.36,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Peterborough.714360_CWEC2020.zip,1261,198,28,22,4284
+Pickle Lake AUT,51.45,-90.22,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Pickle.Lake.AUT.718350_CWEC2020.zip,816,169,27,20,6364
+Point Pelee CS,41.95,-82.52,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Point.Pelee.CS.713030_CWEC2020.zip,1384,212,27,22,3744
+Point Petre AUT,43.83,-77.15,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Point.Petre.AUT.714300_CWEC2020.zip,1232,219,27,23,3795
+Port Weller AUT,43.25,-79.22,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Port.Weller.AUT.714320_CWEC2020.zip,1483,222,28,23,3441
+Pukaskwa AUT,48.61,-86.29,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Pukaskwa.AUT.717500_CWEC2020.zip,626,184,25,19,5346
+Sault Ste Marie AP,46.49,-84.51,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Sault.Ste.Marie.AP.712600_CWEC2020.zip,936,203,28,21,4738
+Sioux Lookout AP,50.11,-91.91,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Sioux.Lookout.AP.718420_CWEC2020.zip,938,180,27,21,5803
+Sudbury AP,46.63,-80.8,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Sudbury.AP.717300_CWEC2020.zip,1002,178,29,22,4990
+Thunder Bay AP,48.37,-89.32,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Thunder.Bay.AP.716670_CWEC2020.zip,864,188,29,22,5427
+Timmins AP,48.57,-81.38,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Timmins.AP.717390_CWEC2020.zip,885,186,29,22,5853
+Toronto Buttonville AP,43.86,-79.37,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Toronto.Buttonville.AP.716390_CWEC2020.zip,1446,206,30,23,3868
+Toronto City Centre,43.63,-79.39,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Toronto.City.Centre.712650_CWEC2020.zip,1306,206,26,23,3520
+Toronto City,43.67,-79.4,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Toronto.City.715080_CWEC2020.zip,1564,198,32,24,3396
+Toronto Intl AP,43.68,-79.63,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Toronto.Intl.AP.716240_CWEC2020.zip,1510,206,30,23,3664
+Trenton AP,44.12,-77.53,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Trenton.AP.716210_CWEC2020.zip,1350,216,28,23,3850
+Upsala AUT,49.03,-90.47,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Upsala.AUT.714350_CWEC2020.zip,823,186,27,21,5883
+Vineland Station RCS,43.18,-79.4,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Vineland.Station.RCS.711710_CWEC2020.zip,1487,200,32,25,3572
+Wawa AP,47.97,-84.79,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Wawa.AP.717380_CWEC2020.zip,707,195,23,18,5619
+Wiarton AP,44.74,-81.11,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Wiarton.AP.716330_CWEC2020.zip,1172,220,28,22,4098
+Windsor AP,42.28,-82.96,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/ON_Ontario/CAN_ON_Windsor.AP.715380_CWEC2020.zip,1841,196,31,24,3211
+Charlottetown AP,46.29,-63.12,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/PE_Prince_Edward_Island/CAN_PE_Charlottetown.AP.717060_CWEC2020.zip,957,182,27,21,4407
+East Point AUT,46.46,-61.99,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/PE_Prince_Edward_Island/CAN_PE_East.Point.AUT.714120_CWEC2020.zip,838,179,24,20,4299
+Harrington CDA CS,46.34,-63.17,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/PE_Prince_Edward_Island/CAN_PE_Harrington.CDA.CS.713500_CWEC2020.zip,967,181,26,22,4386
+Maple Plains,46.3,-63.58,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/PE_Prince_Edward_Island/CAN_PE_Maple.Plains.710267_CWEC2020.zip,955,171,27,22,4479
+North Cape,47.06,-64,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/PE_Prince_Edward_Island/CAN_PE_North.Cape.719870_CWEC2020.zip,887,195,26,22,4420
+St Peters,46.45,-62.58,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/PE_Prince_Edward_Island/CAN_PE_St.Peters.713100_CWEC2020.zip,973,171,27,22,4303
+Summerside,46.44,-63.84,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/PE_Prince_Edward_Island/CAN_PE_Summerside.717020_CWEC2020.zip,1009,182,26,21,4396
+Amqui,48.47,-67.43,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Amqui.713860_CWEC2020.zip,840,190,27,21,5455
+Bagotville AP,48.33,-71,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Bagotville.AP.717270_CWEC2020.zip,899,168,27,21,5540
+Baie Comeau AP,49.13,-68.2,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Baie.Comeau.AP.716910_CWEC2020.zip,575,189,24,19,5571
+Baie Comeau,49.26,-68.15,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Baie.Comeau.718290_CWEC2020.zip,608,180,24,19,5498
+Barrage Temiscamingue,46.71,-79.1,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Barrage.Temiscamingue.717320_CWEC2020.zip,1038,190,30,24,4967
+Beauceville,46.21,-70.78,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Beauceville.713230_CWEC2020.zip,1005,182,28,21,4949
+Beauport,46.84,-71.2,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Beauport.715780_CWEC2020.zip,1141,192,27,24,4652
+Bonnard,50.73,-71.01,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Bonnard.713830_CWEC2020.zip,552,154,26,19,6729
+Cap Despoir,48.42,-64.32,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Cap.Despoir.714290_CWEC2020.zip,550,180,20,18,5079
+Cap Madeleine,49.25,-65.32,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Cap.Madeleine.714250_CWEC2020.zip,604,195,22,18,5034
+Cap Rouge,48.37,-70.54,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Cap.Rouge.711860_CWEC2020.zip,865,170,27,20,5162
+Cap Tourmente,47.08,-70.78,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Cap.Tourmente.713840_CWEC2020.zip,983,198,30,26,4597
+Cape Whittle,50.16,-60.06,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Cape.Whittle.713740_CWEC2020.zip,225,166,16,15,5617
+Chamouchouane,49.28,-73.36,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Chamouchouane.715230_CWEC2020.zip,729,162,29,24,6198
+Chapais,49.82,-74.98,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Chapais.718240_CWEC2020.zip,704,165,27,19,6407
+Charlevoix Mrc,47.28,-70.64,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Charlevoix.Mrc.713190_CWEC2020.zip,551,196,24,20,6159
+Chevery,50.47,-59.64,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Chevery.718140_CWEC2020.zip,355,158,21,18,5896
+Chute Des Passes,49.84,-71.17,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Chute.Des.Passes.715220_CWEC2020.zip,683,167,26,19,6119
+Deschambault,46.69,-71.97,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Deschambault.713890_CWEC2020.zip,1022,190,28,23,4979
+Foret Montmorency RCS,47.32,-71.15,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Foret.Montmorency.RCS.712120_CWEC2020.zip,553,151,23,19,6110
+Frelighsburg,45.03,-72.85,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Frelighsburg.713730_CWEC2020.zip,1258,186,30,26,4287
+Gaspe AP,48.78,-64.48,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Gaspe.AP.711880_CWEC2020.zip,803,184,27,21,5118
+Havre St Pierre,50.28,-63.61,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Havre.St.Pierre.715840_CWEC2020.zip,477,184,22,18,5727
+High Falls,45.84,-75.65,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_High.Falls.713910_CWEC2020.zip,1118,195,28,22,4704
+Ile Aux Perroquets,50.22,-64.21,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Ile.Aux.Perroquets.713750_CWEC2020.zip,207,196,18,16,5784
+Ile Rouge,48.07,-69.56,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Ile.Rouge.714260_CWEC2020.zip,289,190,18,16,5424
+Iles De La Madeleine,47.43,-61.77,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Iles.De.La.Madeleine.717100_CWEC2020.zip,779,196,23,20,4538
+Inukjuak AP,58.47,-78.08,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Inukjuak.AP.719070_CWEC2020.zip,150,139,20,13,8305
+Jonquiere,48.43,-71.14,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Jonquiere.716170_CWEC2020.zip,909,171,29,25,5430
+Kuujjuaq AP,58.09,-68.42,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Kuujjuaq.AP.719060_CWEC2020.zip,271,139,22,16,7945
+Kuujjuarapik AP,55.28,-77.77,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Kuujjuarapik.AP.CAN001_CWEC2020.zip,281,142,24,16,7512
+Lacadie,45.29,-73.35,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Lacadie.713720_CWEC2020.zip,1297,200,29,24,4338
+Lassomption,45.81,-73.43,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Lassomption.715240_CWEC2020.zip,1267,210,28,22,4501
+Letape,47.56,-71.23,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Letape.713820_CWEC2020.zip,479,159,23,18,6332
+La Baie,48.3,-70.92,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_La.Baie.713880_CWEC2020.zip,850,162,26,22,5639
+La Pocatiere,47.36,-70.03,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_La.Pocatiere.717130_CWEC2020.zip,941,197,30,25,4866
+La Tuque,47.41,-72.79,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_La.Tuque.713780_CWEC2020.zip,946,176,28,21,5317
+Lac Benoit,51.53,-71.11,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Lac.Benoit.715200_CWEC2020.zip,503,154,25,18,7040
+Lac Eon,51.87,-63.28,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Lac.Eon.714210_CWEC2020.zip,406,140,25,20,7074
+Lac Memphremagog,45.27,-72.17,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Lac.Memphremagog.710359_CWEC2020.zip,1181,176,28,24,4519
+Lac Saint Pierre,46.18,-72.92,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Lac.Saint.Pierre.711980_CWEC2020.zip,1252,192,27,23,4367
+Laterriere,48.31,-71.13,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Laterriere.710400_CWEC2020.zip,920,157,28,21,5583
+Lemieux,46.3,-72.06,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Lemieux.716160_CWEC2020.zip,1129,192,28,23,4820
+Lennoxville,45.37,-71.82,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Lennoxville.716110_CWEC2020.zip,1149,175,30,25,4534
+Longue Pointe De Mingan,50.27,-64.23,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Longue.Pointe.De.Mingan.715120_CWEC2020.zip,414,193,21,17,5861
+Lourdes De Blanc Sablon AP,51.44,-57.19,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Lourdes.De.Blanc.Sablon.AP.718080_CWEC2020.zip,286,146,18,15,5902
+Maniwaki Airport,46.27,-75.99,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Maniwaki.Airport.717210_CWEC2020.zip,1091,196,30,22,5022
+Manouane Est,50.66,-70.53,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Manouane.Est.715210_CWEC2020.zip,530,163,26,21,6727
+Matagami AP,49.76,-77.8,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Matagami.AP.719470_CWEC2020.zip,799,167,26,20,6160
+Mctavish,45.5,-73.58,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Mctavish.716120_CWEC2020.zip,1426,198,29,22,4018
+Mont Joli AP,48.61,-68.21,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Mont.Joli.AP.717180_CWEC2020.zip,789,190,26,21,5109
+Montreal Est,45.63,-73.55,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Montreal.Est.713721_CWEC2020.zip,1392,203,29,23,4223
+Montreal Intl AP,45.47,-73.74,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Montreal.Intl.AP.716270_CWEC2020.zip,1448,205,31,24,4131
+Montreal Mirabel Intl AP,45.68,-74.03,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Montreal.Mirabel.Intl.AP.CAN002_CWEC2020.zip,1292,202,28,21,4565
+Montreal St Hubert,45.52,-73.42,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Montreal.St.Hubert.713710_CWEC2020.zip,1377,196,28,23,4194
+Natashquan AP,50.19,-61.81,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Natashquan.AP.718130_CWEC2020.zip,490,182,21,18,5645
+New Carlisle,48.01,-65.33,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_New.Carlisle.716190_CWEC2020.zip,761,196,26,21,4982
+Nicolet,46.23,-72.66,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Nicolet.717230_CWEC2020.zip,1199,192,28,23,4580
+Normandin,48.84,-72.55,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Normandin.713790_CWEC2020.zip,794,178,30,24,5872
+Parent,47.92,-74.64,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Parent.717260_CWEC2020.zip,805,162,29,24,5956
+Pointe Au Pere Inrs,48.51,-68.47,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Pointe.Au.Pere.Inrs.715540_CWEC2020.zip,508,193,22,20,5232
+Pointe Claveau,48.26,-70.11,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Pointe.Claveau.711890_CWEC2020.zip,779,168,24,20,5240
+Pointe De Lislet,48.14,-69.72,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Pointe.De.Lislet.711900_CWEC2020.zip,564,175,24,19,5003
+Pointe Des Monts,49.32,-67.38,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Pointe.Des.Monts.714270_CWEC2020.zip,352,197,19,17,5508
+Pointe Noire CS,50.16,-66.43,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Pointe.Noire.CS.713900_CWEC2020.zip,568,177,22,21,5377
+Port Menier,49.84,-64.29,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Port.Menier.718100_CWEC2020.zip,553,212,23,19,5382
+Quebec Intl AP,46.8,-71.38,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Quebec.Intl.AP.717140_CWEC2020.zip,1045,191,27,22,4823
+Riviere Du Loup,47.81,-69.55,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Riviere.Du.Loup.717150_CWEC2020.zip,804,187,25,21,5191
+Roberval AP,48.52,-72.27,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Roberval.AP.717280_CWEC2020.zip,886,172,30,24,5579
+Rouyn Noranda AP,48.21,-78.84,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Rouyn.Noranda.AP.717255_CWEC2020.zip,848,181,28,22,5815
+Rouyn,48.25,-79.03,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Rouyn.717340_CWEC2020.zip,900,182,29,22,5737
+Schefferville AP,54.81,-66.81,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Schefferville.AP.719210_CWEC2020.zip,326,134,22,16,7811
+Sept Iles AP,50.22,-66.27,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Sept.Iles.AP.718110_CWEC2020.zip,511,191,22,18,5867
+Shawinigan,46.56,-72.73,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Shawinigan.713700_CWEC2020.zip,1070,191,27,22,4841
+St Anicet,45.12,-74.29,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_St.Anicet.717120_CWEC2020.zip,1373,202,30,23,4285
+St Jovite,46.08,-74.56,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_St.Jovite.713760_CWEC2020.zip,966,183,28,22,5147
+Ste Anne De Bellevue,45.43,-73.93,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Ste.Anne.De.Bellevue.713770_CWEC2020.zip,1328,201,29,24,4322
+Ste Clothilde,45.17,-73.68,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Ste.Clothilde.716140_CWEC2020.zip,1299,190,29,22,4324
+Ste Foy U Laval,46.78,-71.29,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Ste.Foy.U.Laval.713920_CWEC2020.zip,1131,206,28,22,4712
+Val Dor,48.06,-77.79,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Val.Dor.717250_CWEC2020.zip,893,170,28,21,5824
+Varennes,45.72,-73.38,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/QC_Quebec/CAN_QC_Varennes.711840_CWEC2020.zip,1289,202,29,24,4449
+Assiniboia Airport,49.73,-105.95,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Assiniboia.Airport.714870_CWEC2020.zip,1047,241,31,22,5122
+Broadview,50.37,-102.57,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Broadview.718610_CWEC2020.zip,933,218,27,20,5689
+Buffalo Narrows AUT,55.84,-108.42,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Buffalo.Narrows.AUT.710770_CWEC2020.zip,737,192,26,18,6189
+Collins Bay Sk,58.23,-103.68,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Collins.Bay.Sk.710750_CWEC2020.zip,511,169,26,17,7443
+Coronach Spc,49.05,-105.48,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Coronach.Spc.715160_CWEC2020.zip,1032,234,32,22,5211
+Cypress Hills Park,49.64,-109.51,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Cypress.Hills.Park.711390_CWEC2020.zip,689,248,27,20,5246
+Eastend Cypress AUT,49.44,-108.99,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Eastend.Cypress.AUT.711310_CWEC2020.zip,865,254,30,17,5326
+Elbow CS,51.13,-106.58,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Elbow.CS.714500_CWEC2020.zip,950,230,30,19,5557
+Estevan AP,49.21,-102.97,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Estevan.AP.718620_CWEC2020.zip,1056,230,30,23,5442
+Hudson Bay AUT,52.82,-102.32,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Hudson.Bay.AUT.718680_CWEC2020.zip,818,204,28,19,6137
+Indian Head CDA,50.55,-103.65,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Indian.Head.CDA.715150_CWEC2020.zip,901,222,28,22,5668
+Island Falls AUT,55.53,-102.35,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Island.Falls.AUT.713310_CWEC2020.zip,721,182,26,18,6729
+Jimmy Lake AWOS,54.91,-109.96,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Jimmy.Lake.AWOS.710230_CWEC2020.zip,715,199,25,19,5846
+Key Lake AP,57.25,-105.6,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Key.Lake.AP.714990_CWEC2020.zip,590,169,26,17,7197
+Kindersley AP,51.52,-109.18,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Kindersley.AP.711290_CWEC2020.zip,952,241,31,19,5435
+La Ronge AP,55.15,-105.27,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_La.Ronge.AP.719220_CWEC2020.zip,785,188,29,20,6270
+Last Mountain CS,51.42,-105.25,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Last.Mountain.CS.715560_CWEC2020.zip,904,224,28,20,5723
+Leader Airport,50.91,-109.5,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Leader.Airport.714590_CWEC2020.zip,1034,248,30,20,5265
+Lucky Lake,50.95,-107.15,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Lucky.Lake.714550_CWEC2020.zip,931,231,29,22,5326
+Maple Creek,49.9,-109.47,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Maple.Creek.714530_CWEC2020.zip,1076,254,32,23,4910
+Meadow Lake,54.13,-108.52,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Meadow.Lake.719700_CWEC2020.zip,760,197,26,19,5897
+Melfort,52.82,-104.6,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Melfort.714560_CWEC2020.zip,843,218,27,22,5986
+Moose Jaw CS,50.33,-105.54,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Moose.Jaw.CS.715390_CWEC2020.zip,961,221,31,23,5237
+Nipawin,53.33,-104,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Nipawin.713120_CWEC2020.zip,867,206,27,21,6143
+North Battleford,52.77,-108.24,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_North.Battleford.718760_CWEC2020.zip,887,226,29,21,5604
+Outlook Pfra,51.48,-107.05,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Outlook.Pfra.715510_CWEC2020.zip,1012,225,30,20,5233
+Prince Albert AP,53.21,-105.67,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Prince.Albert.AP.718690_CWEC2020.zip,849,205,28,20,6175
+Regina Intl AP,50.43,-104.67,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Regina.Intl.AP.718630_CWEC2020.zip,984,230,31,21,5503
+Rockglen AUT,49.17,-105.98,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Rockglen.AUT.711350_CWEC2020.zip,1003,243,30,21,5169
+Rosetown East,51.57,-107.92,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Rosetown.East.715100_CWEC2020.zip,970,227,30,21,5590
+Saskatoon Intl AP,52.17,-106.7,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Saskatoon.Intl.AP.718660_CWEC2020.zip,973,233,30,22,5728
+Scott CDA,52.36,-108.83,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Scott.CDA.714890_CWEC2020.zip,866,226,29,20,5803
+Southend,56.33,-103.28,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Southend.714510_CWEC2020.zip,613,191,27,19,7142
+Spiritwood West,53.37,-107.55,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Spiritwood.West.711330_CWEC2020.zip,753,209,27,22,5806
+Stony Rapids,59.25,-105.84,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Stony.Rapids.711320_CWEC2020.zip,638,164,27,17,7403
+Swift Current CDA,50.27,-107.73,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Swift.Current.CDA.714460_CWEC2020.zip,936,235,30,22,5128
+Swift Current,50.29,-107.69,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Swift.Current.711420_CWEC2020.zip,968,234,30,21,4976
+Uranium City AUT,59.57,-108.48,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Uranium.City.AUT.710760_CWEC2020.zip,621,167,27,17,7506
+Val Marie Southeast,49.06,-107.59,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Val.Marie.Southeast.711370_CWEC2020.zip,1114,253,32,23,5267
+Waskesiu Lake,53.92,-106.07,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Waskesiu.Lake.714540_CWEC2020.zip,785,193,27,19,5784
+Watrous East,51.67,-105.4,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Watrous.East.715110_CWEC2020.zip,873,225,29,22,5735
+Weyburn,49.7,-103.8,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Weyburn.714520_CWEC2020.zip,1069,227,31,21,5338
+Wynyard AUT,51.77,-104.2,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Wynyard.AUT.718650_CWEC2020.zip,845,212,29,20,5677
+Yorkton,51.26,-102.46,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/SK_Saskatchewan/CAN_SK_Yorkton.712920_CWEC2020.zip,914,222,28,22,5975
+Burwash AP,61.37,-139.04,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/YT_Yukon/CAN_YT_Burwash.AP.710010_CWEC2020.zip,274,184,21,13,7774
+Carmacks CS,62.12,-136.19,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/YT_Yukon/CAN_YT_Carmacks.CS.710390_CWEC2020.zip,574,178,26,16,7556
+Dawson,64.06,-139.13,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/YT_Yukon/CAN_YT_Dawson.719660_CWEC2020.zip,573,163,25,15,7788
+Faro AUT,62.21,-133.38,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/YT_Yukon/CAN_YT_Faro.AUT.719490_CWEC2020.zip,479,100,25,15,7495
+Haines Junction,60.77,-137.58,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/YT_Yukon/CAN_YT_Haines.Junction.715050_CWEC2020.zip,356,164,21,13,7297
+Herschel Island,69.57,-138.91,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/YT_Yukon/CAN_YT_Herschel.Island.715010_CWEC2020.zip,39,206,16,13,9573
+Ivvavik Nat Park,69.16,-140.15,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/YT_Yukon/CAN_YT_Ivvavik.Nat.Park.719780_CWEC2020.zip,274,201,22,16,9480
+Macmillan Pass,63.24,-130.04,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/YT_Yukon/CAN_YT_Macmillan.Pass.719900_CWEC2020.zip,153,120,19,12,8608
+Mayo AP,63.62,-135.87,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/YT_Yukon/CAN_YT_Mayo.AP.719650_CWEC2020.zip,553,173,25,16,7196
+Old Crow RCS,67.57,-139.84,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/YT_Yukon/CAN_YT_Old.Crow.RCS.710440_CWEC2020.zip,408,213,26,17,9267
+Rock River,66.98,-136.22,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/YT_Yukon/CAN_YT_Rock.River.715060_CWEC2020.zip,238,194,23,15,8627
+Teslin AUT,60.17,-132.73,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/YT_Yukon/CAN_YT_Teslin.AUT.710450_CWEC2020.zip,383,116,24,13,6894
+Watson Lake AP,60.12,-128.82,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/YT_Yukon/CAN_YT_Watson.Lake.AP.711990_CWEC2020.zip,539,129,26,17,7290
+Whitehorse AP,60.71,-135.07,https://climate.onebuilding.org/WMO_Region_4_North_and_Central_America/CAN_Canada/YT_Yukon/CAN_YT_Whitehorse.AP.719640_CWEC2020.zip,418,150,24,15,6592

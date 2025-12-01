@@ -117,7 +117,8 @@ DUCT_GAIN_MULTIPLIERS = {
     ('crawl_enclosed', '1.4'): 0.10,
     ('crawl_enclosed', '3.5'): 0.05,
     ('crawl_enclosed', '>=3.5'): 0.0,
-    ('slab_perimeter', 'any'): 0.0  # slab-on-grade perimeter gain handled differently; no cooling gain multiplier
+    ('slab_perimeter', 'any'): 0.0,  # slab-on-grade perimeter gain handled differently; no cooling gain multiplier
+    ('conditioned', 'any'): 0.0  # ducts within conditioned space have no gain
 }
 
 # Latent multiplier default (Clause 6.3.1 Note)
@@ -164,7 +165,11 @@ def determine_solar0(direction):
 
 def duct_gain_multiplier(location, rsi):
     """Map duct location + insulation RSI to gain multiplier (DGMc)."""
-    # Categorize RSI
+    # Special handling for conditioned space and slab perimeter
+    if location in ['conditioned', 'slab_perimeter']:
+        return DUCT_GAIN_MULTIPLIERS.get((location, 'any'), 0.0)
+    
+    # Categorize RSI for unconditioned spaces
     if rsi is None:
         cat = 'none'
     elif rsi >= 3.5:
@@ -345,21 +350,8 @@ def calculate_cooling_load_f280(params, inputs):
             'terrain_class_site': inputs.get('terrain_class_site', 7),
         }
         
-        # Get wind speed from climate data or inputs
-        wind_speed_met = inputs.get('wind_speed_met')
-        if wind_speed_met is None:
-            city_name = inputs.get('city')
-            if city_name:
-                # Load from NBC_F280_merge.csv
-                climate_db = _load_climate_db()
-                if climate_db is not None:
-                    city_row = climate_db[climate_db['City'].str.lower() == city_name.lower()]
-                    if not city_row.empty:
-                        # Use JulWind column for cooling season
-                        wind_speed_met = city_row.iloc[0].get('JulWind', 10.0)
-            
-            if wind_speed_met is None:
-                wind_speed_met = 10.0  # Default 10 km/h
+        # Get wind speed from inputs (already populated from climate data via overrides)
+        wind_speed_met = inputs.get('wind_speed_met', 10.0)  # Default 10 km/h if not provided
         
         try:
             aim2_inputs = AIM2Inputs(
@@ -415,7 +407,7 @@ def calculate_cooling_load_f280(params, inputs):
     HGsalr = HGsalb  # whole building single aggregation
     HGsvr = HGsvb
     # Duct gain Clause 6.2.8
-    dgm_location = inputs.get('duct_location', 'attic_open')
+    dgm_location = inputs.get('duct_location', 'conditioned')
     duct_rsi = inputs.get('duct_rsi')
     DGMc = duct_gain_multiplier(dgm_location, duct_rsi)
     HGdr = DGMc * (HGcr + HGsp + HGapk + HGapl + HGsalr + HGsvr)
@@ -494,6 +486,15 @@ def calculate_cooling_load_f280(params, inputs):
         'solar_details': solar_details,
         'natural_ach_used': lfair,
         'infiltration_method': 'AIM-2' if (inputs.get('natural_ach') is None and aim2_compute_infiltration is not None) else 'Simple',
+        # Envelope properties used in calculations (for validation)
+        'ag_walls_rsi_used': ag_walls_rsi,
+        'attic_rsi_used': attic_rsi,
+        'windows_u_used': windows_u,
+        'shgc_used': shgc,
+        # Design conditions actually used in calculation
+        'outdoor_cooling_temp_used': Toc,
+        'indoor_cooling_temp_used': Tic,
+        'delta_t_used': delta_t,
     }
 
 
@@ -517,6 +518,17 @@ def parse_idf_parameters(sim_dir: Path):
         occupant_count = 0.0
         zone_floor_area = {}
         wall_orientation_by_surface = {}
+        
+        # Dictionaries to store construction and material data
+        constructions = {}  # construction_name -> [layer_names]
+        materials = {}  # material_name -> rsi_value
+        surface_constructions = {}  # surface_name -> construction_name
+        
+        # Track weighted RSI values for walls and roofs
+        wall_rsi_weighted_sum = 0.0
+        wall_area_for_rsi = 0.0
+        roof_rsi_weighted_sum = 0.0
+        roof_area_for_rsi = 0.0
 
         def clean_token(token):
             token = token.strip()
@@ -537,7 +549,78 @@ def parse_idf_parameters(sim_dir: Path):
                 cy += z1*x2 - x1*z2
                 cz += x1*y2 - y1*x2
             return 0.5 * math.sqrt(cx*cx + cy*cy + cz*cz)
+        
+        def calculate_construction_rsi(construction_name):
+            """Calculate total RSI value for a construction."""
+            if construction_name not in constructions:
+                return None
+            
+            total_rsi = 0.0
+            layers = constructions[construction_name]
+            
+            for layer_name in layers:
+                if layer_name in materials:
+                    total_rsi += materials[layer_name]
+            
+            return total_rsi if total_rsi > 0 else None
 
+        # First pass: collect all materials and constructions
+        for obj in raw_objects:
+            lines = [l for l in obj.split('\n') if l.strip()]
+            if not lines:
+                continue
+            first = lines[0].strip().lower()
+            
+            # Parse Material objects
+            if first.startswith('material,'):
+                tokens = [clean_token(t) for t in ','.join(lines[1:]).split(',') if clean_token(t)]
+                if len(tokens) >= 4:
+                    material_name = tokens[0]
+                    try:
+                        # Material format: Name, Roughness, Thickness(m), Conductivity(W/m-K), Density, Specific Heat, ...
+                        thickness = float(tokens[2])
+                        conductivity = float(tokens[3])
+                        if conductivity > 0:
+                            rsi = thickness / conductivity
+                            materials[material_name] = rsi
+                    except (ValueError, ZeroDivisionError):
+                        pass
+            
+            # Parse Material:NoMass objects
+            elif first.startswith('material:nomass'):
+                tokens = [clean_token(t) for t in ','.join(lines[1:]).split(',') if clean_token(t)]
+                if len(tokens) >= 3:
+                    material_name = tokens[0]
+                    try:
+                        # Material:NoMass format: Name, Roughness, Thermal Resistance (m2-K/W)
+                        rsi = float(tokens[2])
+                        materials[material_name] = rsi
+                    except ValueError:
+                        pass
+            
+            # Parse Material:AirGap objects
+            elif first.startswith('material:airgap'):
+                tokens = [clean_token(t) for t in ','.join(lines[1:]).split(',') if clean_token(t)]
+                if len(tokens) >= 2:
+                    material_name = tokens[0]
+                    try:
+                        # Material:AirGap format: Name, Thermal Resistance (m2-K/W)
+                        rsi = float(tokens[1])
+                        materials[material_name] = rsi
+                    except ValueError:
+                        pass
+            
+            # Parse Construction objects
+            elif first.startswith('construction,'):
+                tokens = [clean_token(t) for t in ','.join(lines[1:]).split(',') if clean_token(t)]
+                if len(tokens) >= 2:
+                    construction_name = tokens[0]
+                    # All remaining tokens are layer names
+                    layers = tokens[1:]
+                    constructions[construction_name] = layers
+
+        # Second pass: parse geometry and associate with constructions
+        # Second pass: parse geometry and associate with constructions
         for obj in raw_objects:
             lines = [l for l in obj.split('\n') if l.strip()]
             if not lines:
@@ -552,6 +635,11 @@ def parse_idf_parameters(sim_dir: Path):
                 construction_name = tokens[2] if len(tokens) > 2 else ''
                 zone_name = tokens[3] if len(tokens) > 3 else ''
                 outside_bc = tokens[4].lower() if len(tokens) > 4 else ''
+                
+                # Store construction association
+                if construction_name:
+                    surface_constructions[surface_name] = construction_name
+                
                 num_vertices = None
                 coords_start_index = None
                 
@@ -596,11 +684,23 @@ def parse_idf_parameters(sim_dir: Path):
                 except ValueError:
                     continue
                 area = polygon_area(verts)
+                
+                # Calculate RSI for this surface's construction
+                surface_rsi = None
+                if construction_name:
+                    surface_rsi = calculate_construction_rsi(construction_name)
+                
                 if outside_bc == 'outdoors':
                     if surface_type == 'wall':
                         # Exclude basement and attic walls from above-grade wall calculation
                         if 'basement' not in zone_name.lower() and 'attic' not in zone_name.lower():
                             wall_area_gross += area
+                            
+                            # Track area-weighted RSI for walls
+                            if surface_rsi is not None and area > 0:
+                                wall_rsi_weighted_sum += surface_rsi * area
+                                wall_area_for_rsi += area
+                            
                             if len(verts) >= 3:
                                 v1,v2,v3 = verts[0],verts[1],verts[2]
                                 nx = (v2[1]-v1[1])*(v3[2]-v1[2]) - (v2[2]-v1[2])*(v3[1]-v1[1])
@@ -620,8 +720,18 @@ def parse_idf_parameters(sim_dir: Path):
                                     else:
                                         wall_orientation_areas['west'] += area
                                         wall_orientation_by_surface[surface_name] = 'west'
-                    elif surface_type in ['roof','roofceiling','ceiling']:
+                    elif surface_type in ['roof','roofceiling']:
                         roof_area += area
+                
+                # Capture attic floor for insulation RSI (floor surface in attic zone)
+                # This represents the insulated ceiling between conditioned space and attic
+                # Handles multi-storey buildings correctly by only capturing the top-floor insulation
+                if surface_type == 'floor' and 'attic' in zone_name.lower():
+                    # Track area-weighted RSI for attic floor (ceiling insulation)
+                    if surface_rsi is not None and area > 0:
+                        roof_rsi_weighted_sum += surface_rsi * area
+                        roof_area_for_rsi += area
+                
                 # Collect floor areas (check all floors, not just outdoors)
                 if surface_type == 'floor':
                     # Only count above-grade conditioned floors (exclude basement and attic)
@@ -747,6 +857,16 @@ def parse_idf_parameters(sim_dir: Path):
             est = floor_area_total / footprint
             if est >= 0.9:
                 storeys = int(round(est))
+        
+        # Calculate area-weighted average RSI values
+        ag_walls_rsi_parsed = None
+        if wall_area_for_rsi > 0:
+            ag_walls_rsi_parsed = wall_rsi_weighted_sum / wall_area_for_rsi
+        
+        attic_rsi_parsed = None
+        if roof_area_for_rsi > 0:
+            attic_rsi_parsed = roof_rsi_weighted_sum / roof_area_for_rsi
+        
         params = {}
         if footprint:
             params['footprint'] = footprint
@@ -756,6 +876,13 @@ def parse_idf_parameters(sim_dir: Path):
             params['aspect'] = 1.0
             # Store parsed wall area for direct use
             params['parsed_wall_area_gross_m2'] = wall_area_gross
+        
+        # Add parsed RSI values
+        if ag_walls_rsi_parsed is not None:
+            params['ag_walls_rsi'] = ag_walls_rsi_parsed
+        if attic_rsi_parsed is not None:
+            params['attic_rsi'] = attic_rsi_parsed
+        
         if glazing_u is not None:
             params['windows_u'] = glazing_u
         if glazing_shgc is not None:
@@ -785,7 +912,8 @@ def f280_cooling_load_from_idf(idf_path: str, **overrides):
     idf_path_obj = Path(idf_path)
     sim_dir = idf_path_obj.parent
     params = parse_idf_parameters(sim_dir)
-    # Allow direct overrides of parsed envelope values
+    # Apply overrides only when explicitly provided (not None)
+    # This allows parsed values from IDF to be used when no override given
     for k in ['ag_walls_rsi','attic_rsi','windows_u','shgc','ach']:
         if k in overrides and overrides[k] is not None:
             params[k] = overrides[k]
@@ -797,16 +925,22 @@ def f280_cooling_load_from_idf(idf_path: str, **overrides):
         try:
             climate_row = _nearest_climate_row(lat, lon)
             if climate_row is not None:
-                # Populate outdoor cooling design temp if not explicitly overridden
-                if 'outdoor_cooling_temp' not in overrides and 'DCDBT' in climate_row:
+                # Populate outdoor cooling design temp if not explicitly overridden (None or not provided)
+                if overrides.get('outdoor_cooling_temp') is None and 'DCDBT' in climate_row:
                     try:
                         overrides['outdoor_cooling_temp'] = float(climate_row['DCDBT'])
                     except (TypeError, ValueError):
                         pass
-                # Populate daily temperature range (summer) if not explicitly overridden
-                if 'daily_temp_range' not in overrides and 'Strange' in climate_row:
+                # Populate daily temperature range (summer) if not explicitly overridden (None or not provided)
+                if overrides.get('daily_temp_range') is None and 'Strange' in climate_row:
                     try:
                         overrides['daily_temp_range'] = float(climate_row['Strange'])
+                    except (TypeError, ValueError):
+                        pass
+                # Populate wind speed if not explicitly overridden (None or not provided)
+                if overrides.get('wind_speed_met') is None and 'JulWind' in climate_row:
+                    try:
+                        overrides['wind_speed_met'] = float(climate_row['JulWind'])
                     except (TypeError, ValueError):
                         pass
                 # Collect metadata
@@ -821,6 +955,7 @@ def f280_cooling_load_from_idf(idf_path: str, **overrides):
                     'climate_site_jul_2p5_db_C': _safe_float(climate_row.get('July 2.5% DB (°C)')),
                     'climate_site_jul_2p5_wb_C': _safe_float(climate_row.get('July 2.5% WB (°C)')),
                     'climate_site_daily_temp_range_C': _safe_float(climate_row.get('Strange')),
+                    'climate_site_jul_wind_kmh': _safe_float(climate_row.get('JulWind')),
                     'climate_zone_code': climate_row.get('Climate_Zone'),
                 })
         except Exception:
@@ -906,7 +1041,7 @@ def _run_cli():
     parser.add_argument('--toc', type=float, help='Outdoor cooling design temperature (°C)')
     parser.add_argument('--natural-ach', type=float, help='Natural air change rate (ACH) override')
     parser.add_argument('--ventilation-lps', type=float, help='Principal ventilation rate (L/s) override')
-    parser.add_argument('--duct-location', type=str, help='Duct location (attic_open, crawl_enclosed, unconditioned_bsmt, slab_perimeter)')
+    parser.add_argument('--duct-location', type=str, help='Duct location (attic_open, crawl_enclosed, unconditioned_bsmt, slab_perimeter, conditioned)')
     parser.add_argument('--duct-rsi', type=float, help='Duct effective insulation RSI value')
     parser.add_argument('--bedrooms', type=int, help='Number of bedrooms (for occupant count)')
     parser.add_argument('--latent-multiplier', type=float, help='Latent multiplier for CSCn (default 1.3)')
