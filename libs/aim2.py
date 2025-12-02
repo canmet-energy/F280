@@ -1,7 +1,7 @@
 from typing import Dict
 import math
 class aim2:
-    def __init__(self,volume,n,n50,eave_height,flue_diam_mm=0.0,flue_height=None,met_height=10.0,terrain_class_met=5,terrain_class_site=7,shelter_walls=1.0,shelter_flue=1.0,house_type="detached",foundation="crawl",storeys="1"):
+    def __init__(self,volume,n,n50,eave_height,house_type="detached",foundation="crawl",storeys="1",shelter_walls=1.0,shelter_flue=1.0,flue_diam_mm=0.0,flue_height=None,met_height=10.0,terrain_class_met=5,terrain_class_site=7):
         """
         AIM-2 Infiltration Model (Bradley HOT2000 Implementation)
         =========================================================
@@ -12,29 +12,25 @@ class aim2:
         - Flue leakage coefficient (from diameter)
         - Stack and wind effect calculations
         - Shelter coefficient (Bradley version)
-        - Wind factor (no flue; Bradley eqn)
         - Superposition of stack and wind flows
         - ACH conversions
 
-        Key leakage parameters:
+        Inputs:
         -----------------------
-        - n   : Flow exponent (dimensionless). Typical range: 0.65–0.75 for houses.
-                Appears in Q = C * (ΔP)^n.
-
-        - N50 : Air change rate at 50 Pa (ACH @ 50 Pa).
-                Used to compute C:
-                    Q50 = N50 * Volume / 3600
-                    C   = Q50 / (50)^n
-
-        - C   : Flow coefficient (m³/s/Pa^n). Computed internally from N50 and n.
-
-        Leakage distribution source:
-        ----------------------------
-        L. Lew, "Evaluation of AIM-2", EMR, Apr 23/93.
-        Fortran table mapping (ceiling, floor, walls) fractions by:
-          i = house type (1 detached, 2 semi-detached)
-          j = foundation (1 crawl, 2 slab-on-grade, 3 shallow, 4 full)
-          k = storeys (1=1, 2=1.5, 3=2, 4=2.5, 5=3)
+        - volume  : volume of the conditioned space (m³)
+        - n   : Flow exponent (dimensionless). Typical range: 0.65–0.75 for houses
+        - n50 : Air change rate at 50 Pa (ACH @ 50 Pa)
+        - eave_height : Height from ground to eaves (m)
+        - house_type : "detached", "semi-detached" or "semi"
+        - foundation : "crawl", "slab", "shallow", or "full"
+        - storeys : "1", "1.5", "2", "2.5", or "3"
+        - shelter_walls : Wall shelter coefficient. Less than or equal to 1
+        - shelter_flue : Flue shelter coefficient. 1 is flue rises above surrounding obstructions, overwise same as shelter_walls
+        - flue_diam_mm : Flue diameter (mm). If no flue, set to 0
+        - flue_height : Height of the flue top relative to ground (m). If no flue, set to None
+        - met_height : Height at which wind observations were made (m)
+        - terrain_class_met : Terrain class at the meteorlogical observation site (1 to 8)
+        - terrain_class_site : Terrain class at the building site (1 to 8)
 
         """
 
@@ -67,10 +63,28 @@ class aim2:
         self.__setLeakageFractions()
         # Shelter coefficient
         self.__setShelterCoefficient()
-        # Stack factor (no-flue)
-        self.__fs_no_flue()
+        
+        if self.__flue_diam_mm > 0.0:
+            #self.__hasFlue = True
+            self.__Bf = self.__flue_height/self.__eave_height
+            self.__fs_has_flue()
+            self.__fw_has_flue()
+        else:
+            #self.__hasflue = False
+            self.__fs_no_flue() # Stack factor (no-flue)
+            self.__fw_no_flue()
     
     def getInfiltration(self,indoor_temp=22.0,outdoor_temp=0.0,wind_speed=0,temp_unit='C',is_met_wind_speed=True):
+        """
+        Inputs
+        =========================================================
+        - indoor_temp : Indoor drybulb temperature (C or K)
+        - outdoor_temp : Outdoor drybulb temperature (C or K)
+        - wind_speed : Wind speed (km/h)
+        - temp_unit : Temperature units, either 'C' or 'K'
+        - is_met_wind_speed : Boolean. True if entered windspeed was measured at meteorlogical site
+
+        """
         if temp_unit != 'C' and temp_unit != 'K':
             raise Exception(f"Temperature unit entered is {temp_unit}. Must 'C' or 'K'.")
         if temp_unit == 'C':
@@ -184,6 +198,15 @@ class aim2:
         }
     
     def __setFractions(self):
+        """"
+        Leakage distribution source:
+        ----------------------------
+        L. Lew, "Evaluation of AIM-2", EMR, Apr 23/93.
+        Fortran table mapping (ceiling, floor, walls) fractions by:
+          i = house type (1 detached, 2 semi-detached)
+          j = foundation (1 crawl, 2 slab-on-grade, 3 shallow, 4 full)
+          k = storeys (1=1, 2=1.5, 3=2, 4=2.5, 5=3)
+        """
         i = self.__HOUSE_TYPE_MAP.get(self.__house_type.lower())
         j = self.__FOUNDATION_MAP.get(self.__foundation.lower())
         k = self.__STOREYS_MAP.get(self.__storeys.strip().lower())
@@ -236,6 +259,29 @@ class aim2:
         """
         self.__fs = ((1 + self.__n * self.__R) / (self.__n + 1)) * ((0.5 - 0.5 * (((self.__X ** 2)/(2 - self.__R)) ** (5 / 4)))) ** (self.__n + 1)
     
+    def __fs_has_flue(self):
+        """
+        Bradley approximation for stack factor (with flue).
+        """
+        M=((self.__X+((2.0*self.__n)+1.0)*self.__Y)**2.0)/(2.0-self.__R)
+        if M > 1.0: # Limit as defined in Walker and Wilson Equation 23
+            M = 1.0
+        Xc = self.__R + ((2.0*(1.0-self.__R-self.Y))/(self.__n+1.0))-(2.0*self.__Y*((self.__Bf-1.0)**self.__n))
+        
+        exp = ((3.0*self.__n)-1.0)/3.0
+        num = 3.0*((Xc-self.__X)**2.0)*(self.__R**(1.0-self.__n))
+        denom = 2.0*(self.__Bf+1.0)
+        F = self.__n*self.__Y*((self.__Bf-1.0)**exp)*(1.0-(num/denom))
+        self.__fs = ((1.0+(self.__n*self.__R))/(self.__n+1.0))*((0.5-(0.5*(M**(5.0/4.0))))**(self.__n+1))+F
+
+    def __fw_no_flue(self):
+        self.__fw = 0.19 * (2.0 - self.__n) * (1.0 - ((self.__X + self.__R) / 2) ** 1.5)
+    
+    def __fw_has_flue(self):
+        S = (self.__X+self.__R+(2.0*self.__Y))/2.0
+        comp1 = 1.0-(((self.__X+self.__R)/2.0)**((3.0/2.0)-self.__Y))
+        self.__fw = (0.19*(2.0-self.__n)*comp1)-((self.__Y/4.0)*(S-(2.0*self.__Y*(S**4.0))))
+        
     # CALCULATIONS METHODS
     def __stack_pressure(self,Ti,To):
         """
@@ -254,7 +300,7 @@ class aim2:
         - Else adjust met tower wind to site using log-profile approximation (Davenport classes).
         """
         if not bIsMet:
-            return wind_speed
+            return wind_speed / 3.6  # Convert km/h to m/s
         Zo_met = self.__DAVENPORT_ZO.get(self.__terrain_class_met, 0.25)
         Zo_site = self.__DAVENPORT_ZO.get(self.__terrain_class_site, 0.25)
         H = max(self.__eave_height, 1.0)
@@ -268,10 +314,8 @@ class aim2:
     def __wind_flow(self,Ue):
         C_converted = self.__C_total * 3600/self.__volume
         # Bradley: Pw = 0.5 * rho * (Sw * Ue)^2
-        Pw = 0.5 * self.__RHO_AIR * (self.__Sw * Ue) ** 2
-        # Bradley: fw = 0.19 * (2 - n) * (1 - (X + R)^(3/2))
-        fw = 0.19 * (2.0 - self.__n) * (1.0 - ((self.__X + self.__R) / 2) ** 1.5)
-        return C_converted * fw * (Pw ** self.__n)
+        Pw = 0.5 * self.__RHO_AIR * (self.__Sw * Ue) ** 2  
+        return C_converted * self.__fw * (Pw ** self.__n)
     
     def __superpose(self,Qs,Qw):
         """
