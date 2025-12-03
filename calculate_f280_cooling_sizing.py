@@ -137,6 +137,89 @@ def latitude_factor(latitude):
     lf = 1 + (latitude - 40.0) * 0.0375
     return max(0.7, min(1.3, lf))
 
+def get_shade_factor(latitude, orientation):
+    """Get shade factor F for overhang shading calculation.
+    
+    Args:
+        latitude: Site latitude in degrees
+        orientation: Window orientation ('east', 'west', 'southeast', 'southwest', 'south')
+    
+    Returns:
+        Shade factor F based on latitude and orientation
+    """
+    # Shade factors table (CSA F280-12)
+    # Latitude bins: 40, 45, 50, 55
+    # Note: North-facing windows do not benefit from overhang shading
+    shade_factors = {
+        'east': [0.8, 0.8, 0.8, 0.8],
+        'west': [0.8, 0.8, 0.8, 0.8],
+        'southeast': [1.3, 1.1, 1.0, 0.9],
+        'southwest': [1.3, 1.1, 1.0, 0.9],
+        'south': [2.6, 2.0, 1.7, 1.4]
+    }
+    
+    if orientation not in shade_factors:
+        return 0.0  # North and other orientations have no shade factor
+    
+    # Find nearest latitude bin
+    lat_bins = [40, 45, 50, 55]
+    factors = shade_factors[orientation]
+    
+    # Clamp latitude to table range
+    lat_clamped = max(40, min(55, latitude))
+    
+    # Find nearest bin
+    nearest_idx = min(range(len(lat_bins)), key=lambda i: abs(lat_bins[i] - lat_clamped))
+    
+    return factors[nearest_idx]
+
+def calculate_overhang_shading(window_width, window_height, overhang_depth, head_drop, latitude, orientation):
+    """Calculate shaded and unshaded window areas for an overhang.
+    
+    Per CSA F280-12, shaded areas are treated as north-facing for solar gain calculation.
+    
+    Args:
+        window_width: Window width W (m)
+        window_height: Window height H (m)
+        overhang_depth: Overhang depth O - how far it extends from window (m)
+        head_drop: Vertical distance D between overhang and top of window (m)
+        latitude: Site latitude (degrees)
+        orientation: Window orientation ('east', 'west', 'southeast', 'southwest', 'south', 'north')
+    
+    Returns:
+        dict with 'shaded_area_m2' and 'unshaded_area_m2'
+    """
+    # Get shade factor based on latitude and orientation
+    F = get_shade_factor(latitude, orientation)
+    
+    # Calculate shade line distance: S = F * O
+    S = F * overhang_depth
+    
+    # Total window area
+    total_area = window_width * window_height
+    
+    # If head drop exceeds shade line, no shading occurs
+    if head_drop > S:
+        return {
+            'shaded_area_m2': 0.0,
+            'unshaded_area_m2': total_area
+        }
+    
+    # Calculate shaded area: Shaded_Area = W * (S - D)
+    shaded_area = window_width * (S - head_drop)
+    
+    # Shaded area cannot exceed total window area
+    shaded_area = min(shaded_area, total_area)
+    shaded_area = max(0.0, shaded_area)  # Cannot be negative
+    
+    # Calculate unshaded area
+    unshaded_area = total_area - shaded_area
+    
+    return {
+        'shaded_area_m2': shaded_area,
+        'unshaded_area_m2': unshaded_area
+    }
+
 def load_shading_factors(csv_path="f280_shading_factors.csv"):
     """Optional shading factors (Table 4) override.
     Expected columns: orientation, SFactor (fraction transmitted).
@@ -282,32 +365,97 @@ def calculate_cooling_load_f280(params, inputs):
     HGcop_total = sum(hgcop_components) + hgcop_roof
     
     # 2. Transparent assemblies heat gain HGct = A * (SHGC*Solar + DTDc/RSI)
+    # With overhang shading: split window area into shaded (north-facing) and unshaded (original orientation)
     latitude = inputs.get('latitude_deg', 49.0)
     lfactor = latitude_factor(latitude)
     sfactor_global = inputs.get('shading_factor_global', 1.0)
     shading_factors = load_shading_factors()
     window_orientation_areas = params.get('window_orientation_areas')
+    window_overhangs = params.get('window_overhangs', {})
+    window_details = params.get('window_details', {})
     window_area_each = window_area / 4.0 if not window_orientation_areas else None
     window_rsi = 1.0 / windows_u if windows_u > 0 else 0.5
     solar_details = {}
     hgct_components = []
+    
+    # Calculate shaded/unshaded areas from overhang data
+    shaded_areas_by_orientation = {'north': 0.0, 'east': 0.0, 'south': 0.0, 'west': 0.0}  # Track shaded area by orientation
+    unshaded_areas_by_orientation = window_orientation_areas.copy() if window_orientation_areas else {'north': window_area_each or 0.0, 'east': window_area_each or 0.0, 'south': window_area_each or 0.0, 'west': window_area_each or 0.0}
+    
+    # Process windows with overhangs
+    for window_name, overhang_data in window_overhangs.items():
+        if window_name in window_details:
+            win = window_details[window_name]
+            orientation = win['orientation']
+            total_area = win['area']
+            
+            # Calculate shaded/unshaded split
+            shading_result = calculate_overhang_shading(
+                window_width=win['width'],
+                window_height=win['height'],
+                overhang_depth=overhang_data['depth'],
+                head_drop=overhang_data['head_drop'],
+                latitude=latitude,
+                orientation=orientation
+            )
+            
+            # Split window area into shaded and unshaded portions in the same orientation
+            unshaded_areas_by_orientation[orientation] -= total_area
+            unshaded_areas_by_orientation[orientation] += shading_result['unshaded_area_m2']
+            shaded_areas_by_orientation[orientation] += shading_result['shaded_area_m2']
+    
+    # Calculate solar gains for both unshaded and shaded windows
     for ori in orientations:
-        area_o = window_orientation_areas.get(ori, 0.0) if window_orientation_areas else window_area_each
-        if area_o is None or area_o <= 0:
+        unshaded_area = unshaded_areas_by_orientation.get(ori, 0.0)
+        shaded_area = shaded_areas_by_orientation.get(ori, 0.0)
+        total_area = (unshaded_area or 0.0) + (shaded_area or 0.0)
+        
+        if total_area <= 0:
             continue
+        
+        # Determine Solar0 for this orientation
         if ori == 'south':
-            solar0 = determine_solar0('south') * lfactor
+            solar0_unshaded = determine_solar0('south') * lfactor
         elif ori in ['east','west']:
-            solar0 = determine_solar0('east')
+            solar0_unshaded = determine_solar0('east')
         elif ori == 'north':
-            solar0 = determine_solar0('north')
+            solar0_unshaded = determine_solar0('north')
         else:
-            solar0 = determine_solar0(ori)
+            solar0_unshaded = determine_solar0(ori)
+        
+        # Shaded portions use north's Solar0 value (per CSA F280-12)
+        solar0_shaded = determine_solar0('north')
+        
         sfactor = shading_factors.get(ori, sfactor_global)
-        solar_incident = solar0 * sfactor
-        hgct = area_o * (shgc * solar_incident + delta_t / window_rsi)
-        hgct_components.append(hgct)
-        solar_details[ori] = {'Solar0': solar0,'SFactor': sfactor,'Solar_incident': solar_incident,'Area_m2': area_o}
+        
+        # Calculate heat gain for unshaded portion
+        if unshaded_area and unshaded_area > 0:
+            solar_incident_unshaded = solar0_unshaded * sfactor
+            hgct_unshaded = unshaded_area * (shgc * solar_incident_unshaded + delta_t / window_rsi)
+            hgct_components.append(hgct_unshaded)
+        
+        # Calculate heat gain for shaded portion (uses north Solar0)
+        if shaded_area and shaded_area > 0:
+            solar_incident_shaded = solar0_shaded * sfactor
+            hgct_shaded = shaded_area * (shgc * solar_incident_shaded + delta_t / window_rsi)
+            hgct_components.append(hgct_shaded)
+        
+        # For reporting: use weighted average Solar0 for the orientation
+        if unshaded_area and unshaded_area > 0:
+            weighted_solar0 = (solar0_unshaded * unshaded_area + solar0_shaded * (shaded_area or 0.0)) / total_area
+        else:
+            weighted_solar0 = solar0_shaded
+        
+        solar_incident_avg = weighted_solar0 * sfactor
+        
+        solar_details[ori] = {
+            'Solar0': weighted_solar0,
+            'SFactor': sfactor,
+            'Solar_incident': solar_incident_avg,
+            'Area_m2': total_area,
+            'Shaded_area_m2': shaded_area or 0.0
+        }
+    
     HGct_total = sum(hgct_components)
     q_solar_total = sum(d['Solar_incident'] * d['Area_m2'] * shgc for d in solar_details.values())
     
@@ -331,7 +479,11 @@ def calculate_cooling_load_f280(params, inputs):
     
     # 4. Infiltration load (CSA F280 Section 6.1.4)
     # Use AIM-2 model to calculate natural ACH if available and configured
-    volume = floor_area_total * floor_height
+    # Use parsed volume if available (includes basement, excludes attic)
+    volume = params.get('parsed_volume_m3')
+    if volume is None or volume <= 0:
+        # Fallback to simple calculation
+        volume = floor_area_total * floor_height
     # Clause 6.2.6: HGsalb = LFair * Vb/3.6 * DTDc * 1.2  (LFair in air changes per hour)
     lfair = inputs.get('natural_ach')
     
@@ -518,6 +670,9 @@ def parse_idf_parameters(sim_dir: Path):
         occupant_count = 0.0
         zone_floor_area = {}
         wall_orientation_by_surface = {}
+        zone_z_coords = {}  # zone_name -> list of z-coordinates from all surfaces
+        window_overhangs = {}  # window_name -> {'depth': O, 'head_drop': D, 'width': W, 'height': H}
+        window_details = {}  # window_name -> {'orientation': str, 'area': float}
         
         # Dictionaries to store construction and material data
         constructions = {}  # construction_name -> [layer_names]
@@ -563,10 +718,68 @@ def parse_idf_parameters(sim_dir: Path):
                     total_rsi += materials[layer_name]
             
             return total_rsi if total_rsi > 0 else None
+        
+        def calculate_overhang_from_vertices(vertices, window_name):
+            """Calculate overhang depth and head drop from Shading:Zone:Detailed vertices.
+            Returns dict with 'depth' and 'head_drop' or None if unable to calculate."""
+            if not vertices or len(vertices) < 3:
+                return None
+            
+            # Get window details if available
+            if window_name not in window_details:
+                return None
+            
+            window_info = window_details[window_name]
+            
+            # For a horizontal overhang, all Z coordinates should be roughly the same
+            z_coords = [v[2] for v in vertices]
+            avg_z = sum(z_coords) / len(z_coords)
+            
+            # Check if it's reasonably horizontal (all Z within 0.1m)
+            if max(z_coords) - min(z_coords) > 0.1:
+                return None  # Not a horizontal overhang
+            
+            # Calculate the overhang depth by finding the maximum distance from the wall plane
+            # The overhang should extend perpendicular to the window
+            # Use the window's first vertex as reference (typically top edge)
+            
+            # Find the projection distance perpendicular to wall
+            # For simplicity, we'll calculate the depth as the distance between parallel edges
+            # Assuming rectangular overhang with 4 vertices
+            
+            if len(vertices) == 4:
+                # Calculate distances between opposite edges
+                edge1 = math.sqrt((vertices[1][0]-vertices[0][0])**2 + 
+                                (vertices[1][1]-vertices[0][1])**2 + 
+                                (vertices[1][2]-vertices[0][2])**2)
+                edge2 = math.sqrt((vertices[3][0]-vertices[2][0])**2 + 
+                                (vertices[3][1]-vertices[2][1])**2 + 
+                                (vertices[3][2]-vertices[2][2])**2)
+                edge3 = math.sqrt((vertices[2][0]-vertices[1][0])**2 + 
+                                (vertices[2][1]-vertices[1][1])**2 + 
+                                (vertices[2][2]-vertices[1][2])**2)
+                edge4 = math.sqrt((vertices[0][0]-vertices[3][0])**2 + 
+                                (vertices[0][1]-vertices[3][1])**2 + 
+                                (vertices[0][2]-vertices[3][2])**2)
+                
+                # The depth is typically the shorter dimension
+                depth = min(edge3, edge4)
+                
+                # Head drop: we need to find the distance from overhang to window top
+                # This is approximate - we'll assume the overhang Z is above the window
+                # For now, set to 0 as a safe default (overhang at window top)
+                head_drop = 0.0
+                
+                return {
+                    'depth': depth,
+                    'head_drop': head_drop
+                }
+            
+            return None
 
         # First pass: collect all materials and constructions
         for obj in raw_objects:
-            lines = [l for l in obj.split('\n') if l.strip()]
+            lines = [l for l in obj.split('\n') if l.strip() and not l.strip().startswith('!')]
             if not lines:
                 continue
             first = lines[0].strip().lower()
@@ -620,9 +833,8 @@ def parse_idf_parameters(sim_dir: Path):
                     constructions[construction_name] = layers
 
         # Second pass: parse geometry and associate with constructions
-        # Second pass: parse geometry and associate with constructions
         for obj in raw_objects:
-            lines = [l for l in obj.split('\n') if l.strip()]
+            lines = [l for l in obj.split('\n') if l.strip() and not l.strip().startswith('!')]
             if not lines:
                 continue
             first = lines[0].strip().lower()
@@ -634,7 +846,14 @@ def parse_idf_parameters(sim_dir: Path):
                 surface_type = tokens[1].lower()
                 construction_name = tokens[2] if len(tokens) > 2 else ''
                 zone_name = tokens[3] if len(tokens) > 3 else ''
-                outside_bc = tokens[4].lower() if len(tokens) > 4 else ''
+                # EnergyPlus 24.2+ includes Space Name field between Zone Name and Outside Boundary Condition
+                # Check if token[4] looks like a space name (matches zone pattern) vs boundary condition
+                if len(tokens) > 5 and tokens[4].lower() not in ['outdoors', 'ground', 'adiabatic', 'surface', 'foundation', 'othersidecoefficients', 'othersideconditionsmodel', 'groundfcfactormethod', 'groundslabpreprocessoraverage', 'groundslabpreprocessorcore', 'groundslabpreprocessorperimeter', 'groundbasementpreprocessoraveragewall', 'groundbasementpreprocessoraveragefloor', 'groundbasementpreprocessorupperwall', 'groundbasementpreprocessorlowerwall']:
+                    # Token[4] is likely a Space Name, so Outside Boundary Condition is at token[5]
+                    outside_bc = tokens[5].lower() if len(tokens) > 5 else ''
+                else:
+                    # Token[4] is the Outside Boundary Condition (older format or no space name)
+                    outside_bc = tokens[4].lower() if len(tokens) > 4 else ''
                 
                 # Store construction association
                 if construction_name:
@@ -654,29 +873,33 @@ def parse_idf_parameters(sim_dir: Path):
                 # Starting from a reasonable position (after standard fields)
                 if not num_vertices:
                     # Standard fields: Name, Type, Construction, Zone, Space, OutsideBoundary, 
-                    # BoundaryObject, SunExposure, WindExposure, ViewFactor, NumVertices (often blank)
-                    # So coordinates typically start around index 10-11
-                    search_start = min(10, len(tokens))
+                    # SunExposure, WindExposure (8 fields)
+                    # Coordinates typically start at index 8
+                    search_start = min(8, len(tokens))
                     coord_tokens = []
                     for idx in range(search_start, len(tokens)):
                         try:
                             float(tokens[idx])
                             coord_tokens.append(tokens[idx])
                         except ValueError:
-                            # Stop when we hit a non-numeric token
-                            break
+                            # Skip non-numeric tokens and continue searching
+                            pass
                     
                     # Calculate number of vertices from coordinate count
                     if len(coord_tokens) >= 9 and len(coord_tokens) % 3 == 0:
                         num_vertices = len(coord_tokens) // 3
-                        coords_start_index = search_start
+                        # coords_start_index not set since we collected all numeric tokens
                 
-                if not num_vertices or coords_start_index is None:
+                if not num_vertices:
                     continue
                     
-                coord_tokens = tokens[coords_start_index:coords_start_index + num_vertices*3]
-                if len(coord_tokens) < num_vertices*3:
-                    continue
+                # Get coordinate tokens
+                if coords_start_index is not None:
+                    # Explicit vertex count was found
+                    coord_tokens = tokens[coords_start_index:coords_start_index + num_vertices*3]
+                    if len(coord_tokens) < num_vertices*3:
+                        continue
+                # else: coord_tokens was already collected above
                 verts = []
                 try:
                     for i in range(0, num_vertices*3, 3):
@@ -684,6 +907,13 @@ def parse_idf_parameters(sim_dir: Path):
                 except ValueError:
                     continue
                 area = polygon_area(verts)
+                
+                # Track z-coordinates for zone height calculation
+                if zone_name and verts:
+                    if zone_name not in zone_z_coords:
+                        zone_z_coords[zone_name] = []
+                    for x, y, z in verts:
+                        zone_z_coords[zone_name].append(z)
                 
                 # Calculate RSI for this surface's construction
                 surface_rsi = None
@@ -756,25 +986,32 @@ def parse_idf_parameters(sim_dir: Path):
                 if not num_vertices:
                     # FenestrationSurface fields: Name, Type, Construction, Surface, OutsideBoundary,
                     # ViewFactor, FrameDivider, Multiplier, NumVertices (often blank)
-                    search_start = min(8, len(tokens))
+                    # Start searching earlier to catch all vertices
+                    search_start = min(4, len(tokens))
                     coord_tokens = []
                     for idx in range(search_start, len(tokens)):
                         try:
                             float(tokens[idx])
                             coord_tokens.append(tokens[idx])
                         except ValueError:
-                            break
+                            # Skip non-numeric tokens and continue searching
+                            pass
                     
                     if len(coord_tokens) >= 9 and len(coord_tokens) % 3 == 0:
                         num_vertices = len(coord_tokens) // 3
-                        coords_start_index = search_start
+                        # Don't set coords_start_index since we collected tokens out of order
+                        # Instead, use coord_tokens directly
                 
-                if not num_vertices or coords_start_index is None:
+                if not num_vertices:
                     continue
-                    
-                coord_tokens = tokens[coords_start_index:coords_start_index + num_vertices*3]
-                if len(coord_tokens) < num_vertices*3:
-                    continue
+                
+                # Get coordinate tokens
+                if coords_start_index is not None:
+                    # Explicit vertex count was found
+                    coord_tokens = tokens[coords_start_index:coords_start_index + num_vertices*3]
+                    if len(coord_tokens) < num_vertices*3:
+                        continue
+                # else: coord_tokens was already collected above
                 verts = []
                 try:
                     for i in range(0, num_vertices*3, 3):
@@ -784,6 +1021,19 @@ def parse_idf_parameters(sim_dir: Path):
                 area = polygon_area(verts)
                 if surf_type in ['window','glassdoor','skylight']:
                     window_area += area
+                    # Calculate window dimensions from vertices
+                    if len(verts) >= 4:
+                        # Assuming rectangular window - calculate width and height
+                        v0, v1, v2, v3 = verts[0], verts[1], verts[2], verts[3]
+                        width1 = math.sqrt((v1[0]-v0[0])**2 + (v1[1]-v0[1])**2 + (v1[2]-v0[2])**2)
+                        height1 = math.sqrt((v2[0]-v1[0])**2 + (v2[1]-v1[1])**2 + (v2[2]-v1[2])**2)
+                        window_width = max(width1, height1)
+                        window_height = min(width1, height1)
+                    else:
+                        # Fallback: estimate from area assuming square window
+                        window_width = math.sqrt(area)
+                        window_height = math.sqrt(area)
+                    
                     if len(verts) >= 3:
                         v1,v2,v3 = verts[0],verts[1],verts[2]
                         nx = (v2[1]-v1[1])*(v3[2]-v1[2]) - (v2[2]-v1[2])*(v3[1]-v1[1])
@@ -792,13 +1042,24 @@ def parse_idf_parameters(sim_dir: Path):
                         if abs(nz) < 0.2:
                             az = (math.degrees(math.atan2(nx, ny)) + 360.0) % 360.0
                             if az >= 315 or az < 45:
-                                window_orientation_areas['north'] += area
+                                orientation = 'north'
                             elif az < 135:
-                                window_orientation_areas['east'] += area
+                                orientation = 'east'
                             elif az < 225:
-                                window_orientation_areas['south'] += area
+                                orientation = 'south'
                             else:
-                                window_orientation_areas['west'] += area
+                                orientation = 'west'
+                            
+                            window_orientation_areas[orientation] += area
+                            # Store window details for overhang calculations
+                            window_name = tokens[0] if tokens else ''
+                            if window_name:
+                                window_details[window_name] = {
+                                    'orientation': orientation,
+                                    'area': area,
+                                    'width': window_width,
+                                    'height': window_height
+                                }
             elif first.startswith('window'):
                 tokens = [clean_token(t) for t in ','.join(lines[1:]).split(',') if clean_token(t)]
                 # Format: Name, Construction, ParentSurface, StartX, StartZ, LengthX, HeightZ
@@ -818,6 +1079,15 @@ def parse_idf_parameters(sim_dir: Path):
                 orientation = wall_orientation_by_surface.get(parent_surface)
                 if orientation in window_orientation_areas:
                     window_orientation_areas[orientation] += area
+                    # Store window details for overhang calculations
+                    window_name = tokens[0]
+                    if window_name:
+                        window_details[window_name] = {
+                            'orientation': orientation,
+                            'area': area,
+                            'width': length_x,
+                            'height': height_z
+                        }
             elif first.startswith('windowmaterial:simpleglazingsystem'):
                 tokens = [clean_token(t) for t in ','.join(lines[1:]).split(',') if clean_token(t)]
                 if len(tokens) >= 4:
@@ -827,11 +1097,11 @@ def parse_idf_parameters(sim_dir: Path):
                         glazing_shgc = shgc if glazing_shgc is None else max(glazing_shgc, shgc)
                     except ValueError:
                         pass
-            elif first.startswith('zone'):
+            elif first == 'zone,':
                 tokens = [clean_token(t) for t in ','.join(lines[1:]).split(',') if clean_token(t)]
                 if len(tokens) >= 10:
                     try:
-                        floor_a = float(tokens[9])
+                        floor_a = float(tokens[8])
                         if floor_a > 0:
                             zone_floor_area[tokens[0]] = floor_a
                     except Exception:
@@ -850,6 +1120,132 @@ def parse_idf_parameters(sim_dir: Path):
                         except Exception:
                             pass
 
+        # Third pass: Parse overhang objects (requires window_details from second pass)
+        for obj in raw_objects:
+            lines = [l for l in obj.split('\n') if l.strip() and not l.strip().startswith('!')]
+            if not lines:
+                continue
+            first = lines[0].strip().lower()
+            
+            if first.startswith('shading:overhang:projection'):
+                # Parse Shading:Overhang:Projection objects
+                # Format: Name, Window/Door Name, Height above Window (head drop D), Tilt, Left Extension, Right Extension, Depth Fraction
+                tokens = [clean_token(t) for t in ','.join(lines[1:]).split(',') if clean_token(t)]
+                if len(tokens) >= 7:
+                    window_name = tokens[1]
+                    try:
+                        head_drop = float(tokens[2])  # D - distance from overhang to top of window
+                        depth_fraction = float(tokens[6])  # Fraction of window/door height
+                        
+                        # Get window height to calculate actual depth
+                        if window_name in window_details:
+                            window_height = window_details[window_name].get('height', 0)
+                            overhang_depth = depth_fraction * window_height
+                            
+                            window_overhangs[window_name] = {
+                                'head_drop': head_drop,
+                                'depth': overhang_depth
+                            }
+                    except (ValueError, IndexError):
+                        pass
+            elif first.startswith('shading:overhang') and not first.startswith('shading:overhang:projection'):
+                # Parse Shading:Overhang objects (explicit depth)
+                # Format: Name, Window/Door Name, Height above Window (head drop D), Tilt, Left Extension, Right Extension, Depth (O)
+                tokens = [clean_token(t) for t in ','.join(lines[1:]).split(',') if clean_token(t)]
+                if len(tokens) >= 7:
+                    window_name = tokens[1]
+                    try:
+                        head_drop = float(tokens[2])  # D - distance from overhang to top of window
+                        overhang_depth = float(tokens[6])  # O - how far overhang extends from window
+                        window_overhangs[window_name] = {
+                            'head_drop': head_drop,
+                            'depth': overhang_depth
+                        }
+                    except (ValueError, IndexError):
+                        pass
+            elif first.startswith('shading:zone:detailed'):
+                # Parse Shading:Zone:Detailed objects that represent overhangs
+                # Look for "overhang" or "overhangs" in the name and match to window
+                tokens = [clean_token(t) for t in ','.join(lines[1:]).split(',') if clean_token(t)]
+                if len(tokens) >= 3:
+                    shading_name = tokens[0].lower()
+                    
+                    # Check if this is an overhang by looking for keyword in name
+                    if 'overhang' in shading_name:
+                        # Try to extract window name from the shading object name
+                        # Common patterns: "Window6 overhangs", "Window3 overhang", etc.
+                        window_name = None
+                        
+                        # Look for window name in the shading name
+                        # Sort by length descending to match longer names first (e.g., Window10 before Window1)
+                        for potential_window in sorted(window_details.keys(), key=len, reverse=True):
+                            if potential_window.lower() in shading_name:
+                                window_name = potential_window
+                                break
+                        
+                        # Also check the base surface field (tokens[1])
+                        if not window_name and len(tokens) >= 2:
+                            base_surface = tokens[1]
+                            # Remove "surface" prefix if present
+                            if base_surface.lower().startswith('surface '):
+                                base_surface = base_surface[8:].strip()
+                            if base_surface in window_details:
+                                window_name = base_surface
+                        
+                        if window_name:
+                            # Parse vertices to calculate overhang parameters
+                            # Find number of vertices
+                            num_vertices = None
+                            coords_start_index = None
+                            
+                            # Try to find explicit vertex count
+                            for idx, tk in enumerate(tokens):
+                                if num_vertices is None and re.fullmatch(r'[0-9]+', tk):
+                                    num_vertices = int(tk)
+                                    coords_start_index = idx + 1
+                                    break
+                            
+                            # If no explicit count, try to parse coordinates starting from index 3
+                            # (after Name, BaseSurface, TransmittanceSchedule, NumVertices - all may be blank)
+                            # But to be safe, start from index 2 to catch everything
+                            if not num_vertices:
+                                search_start = 2
+                                coord_tokens = []
+                                for idx in range(search_start, len(tokens)):
+                                    try:
+                                        float(tokens[idx])
+                                        coord_tokens.append(tokens[idx])
+                                    except ValueError:
+                                        # Skip non-numeric tokens and continue
+                                        pass
+                                
+                                if len(coord_tokens) >= 9 and len(coord_tokens) % 3 == 0:
+                                    num_vertices = len(coord_tokens) // 3
+                                    # Don't set coords_start_index since tokens were collected throughout
+                            
+                            if num_vertices:
+                                # Get coordinate tokens
+                                if coords_start_index is not None:
+                                    coord_tokens = tokens[coords_start_index:coords_start_index + num_vertices*3]
+                                    if len(coord_tokens) < num_vertices*3:
+                                        coord_tokens = None
+                                # else: coord_tokens already collected above
+                                
+                                if coord_tokens and len(coord_tokens) >= num_vertices*3:
+                                    vertices = []
+                                    try:
+                                        for i in range(0, num_vertices*3, 3):
+                                            vertices.append((float(coord_tokens[i]), 
+                                                           float(coord_tokens[i+1]), 
+                                                           float(coord_tokens[i+2])))
+                                        
+                                        # Calculate overhang parameters from vertices
+                                        overhang_params = calculate_overhang_from_vertices(vertices, window_name)
+                                        if overhang_params:
+                                            window_overhangs[window_name] = overhang_params
+                                    except (ValueError, IndexError):
+                                        pass
+
         footprint = max(floor_areas) if floor_areas else (roof_area if roof_area > 0 else None)
         floor_area_total = sum(floor_areas) if floor_areas else (footprint if footprint else None)
         storeys = None
@@ -857,6 +1253,32 @@ def parse_idf_parameters(sim_dir: Path):
             est = floor_area_total / footprint
             if est >= 0.9:
                 storeys = int(round(est))
+        
+        # Calculate building volume from zone-by-zone analysis
+        # Include basement zones but exclude attic zones
+        total_volume = 0.0
+        for zone_name, floor_area in zone_floor_area.items():
+            # Skip attic zones
+            if 'attic' in zone_name.lower():
+                continue
+            
+            # Calculate zone height from z-coordinate range
+            zone_height = 2.5  # Default fallback
+            if zone_name in zone_z_coords:
+                z_coords = zone_z_coords[zone_name]
+                if len(z_coords) >= 2:
+                    zone_height = max(z_coords) - min(z_coords)
+                    # Ensure minimum reasonable height
+                    if zone_height < 1.0:
+                        zone_height = 2.5
+            
+            # Calculate zone volume and add to total
+            zone_volume = floor_area * zone_height
+            total_volume += zone_volume
+        
+        # Fallback if no zones parsed successfully
+        if total_volume <= 0 and floor_area_total:
+            total_volume = floor_area_total * 2.5
         
         # Calculate area-weighted average RSI values
         ag_walls_rsi_parsed = None
@@ -877,6 +1299,10 @@ def parse_idf_parameters(sim_dir: Path):
             # Store parsed wall area for direct use
             params['parsed_wall_area_gross_m2'] = wall_area_gross
         
+        # Add parsed volume (includes basement, excludes attic)
+        if total_volume > 0:
+            params['parsed_volume_m3'] = total_volume
+        
         # Add parsed RSI values
         if ag_walls_rsi_parsed is not None:
             params['ag_walls_rsi'] = ag_walls_rsi_parsed
@@ -894,9 +1320,14 @@ def parse_idf_parameters(sim_dir: Path):
         params['wall_orientation_areas'] = wall_orientation_areas
         params['window_orientation_areas'] = window_orientation_areas
         params['parsed_window_area_m2'] = window_area
+        params['window_overhangs'] = window_overhangs
+        params['window_details'] = window_details
         params['idf_parsed'] = True
         return params
-    except Exception:
+    except Exception as e:
+        import traceback
+        print(f"ERROR in parse_idf_parameters: {e}")
+        print(traceback.format_exc())
         return {}
 
 def f280_cooling_load_from_idf(idf_path: str, **overrides):
