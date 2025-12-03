@@ -1,7 +1,7 @@
-from typing import Dict
+from typing import Dict, List
 import math
 class aim2:
-    def __init__(self,volume,n,n50,eave_height,house_type="detached",foundation="crawl",storeys="1",shelter_walls=1.0,shelter_flue=1.0,flue_diam_mm=0.0,flue_height=None,met_height=10.0,terrain_class_met=5,terrain_class_site=7):
+    def __init__(self,volume,n,n50,eave_height,house_type="detached",foundation="crawl",storeys="1",shelter_walls=1.0,shelter_flue=1.0,flue_diam_mm=None,met_height=10.0,terrain_class_met=5,terrain_class_site=7):
         """
         AIM-2 Infiltration Model (Bradley HOT2000 Implementation)
         =========================================================
@@ -27,7 +27,6 @@ class aim2:
         - shelter_walls : Wall shelter coefficient. Less than or equal to 1
         - shelter_flue : Flue shelter coefficient. 1 is flue rises above surrounding obstructions, overwise same as shelter_walls
         - flue_diam_mm : Flue diameter (mm). If no flue, set to 0
-        - flue_height : Height of the flue top relative to ground (m). If no flue, set to None
         - met_height : Height at which wind observations were made (m)
         - terrain_class_met : Terrain class at the meteorlogical observation site (1 to 8)
         - terrain_class_site : Terrain class at the building site (1 to 8)
@@ -39,8 +38,7 @@ class aim2:
         self.__n: float = n
         self.__n50: float = n50
         self.__eave_height: float = eave_height
-        self.__flue_diam_mm: float = flue_diam_mm
-        self.__flue_height: float = flue_height
+        self.__flue_diam_mm: List[float] = flue_diam_mm
         self.__met_height: float = met_height
         self.__terrain_class_met: int = terrain_class_met
         self.__terrain_class_site: int = terrain_class_site
@@ -64,13 +62,11 @@ class aim2:
         # Shelter coefficient
         self.__setShelterCoefficient()
         
-        if self.__flue_diam_mm > 0.0:
-            #self.__hasFlue = True
-            self.__Bf = self.__flue_height/self.__eave_height
+        if not self.__flue_diam_mm is None:
+            self.__Bf = (self.__eave_height+1.5)/self.__eave_height # Assumption in CSA F280 worksheet
             self.__fs_has_flue()
             self.__fw_has_flue()
         else:
-            #self.__hasflue = False
             self.__fs_no_flue() # Stack factor (no-flue)
             self.__fw_no_flue()
     
@@ -100,7 +96,7 @@ class aim2:
 
         # Wind flow
         Ue = self.__effective_wind_speed(wind_speed,is_met_wind_speed) #converted to m/s
-        Qw = self.__wind_flow(Ue)
+        Qw = self.__wind_flow(Ue,To)
         
         # Superposition
         Qnat = self.__superpose(Qs, Qw)
@@ -130,8 +126,9 @@ class aim2:
         # TODO: More error checking
     
     def __setGlobals(self):
-        self.__RHO_AIR = 1.204097  # kg/m³ at ~20°C
-        self.__G = 9.80665         # m/s²
+        self.__RHO_Con = 352.981 # Constant to adjust air density from CSA F280
+        self.__RHO_AIR = 1.177  # kg/m³ (used by CSA F280)
+        self.__G = 9.8         # m/s² (precision used by CSA F280)
         self.__AP_REF = 4.0        # Pa reference pressure for flue coefficient
         self.__B_INTERACTION = -1.0 / 3.0  # Bradley empirical interaction term
         self.__DAVENPORT_ZO: Dict[int, float] = { # Terrain roughness (Davenport)
@@ -235,11 +232,11 @@ class aim2:
 
         # Flue coefficient
         self.__Cflue = 0.0
-        if self.__flue_diam_mm and self.__flue_diam_mm > 0.0:
-            d_m = self.__flue_diam_mm / 1000.0
-            area = math.pi * (d_m ** 2) / 4.0
-            # Bradley: C_flue = 0.5 * A_flue * (rho / (2 * ΔP_ref))^(n - 0.5)
-            self.__Cflue = 0.5 * area * ((self.__RHO_AIR / (2.0 * self.__AP_REF)) ** (self.__n - 0.5))
+        if not self.__flue_diam_mm is None:
+            self.__setFlueArea() # Determine total combined flue area
+            # Bradley: C_flue = 0.5 * A_flue * (rho / (2 * ΔP_ref))^(n - 0.5) 
+            # Documents provided by CSA: C_flue = 0.5 * A_flue * (2/rho)^0.5 * (1 / ΔP_ref)^(n - 0.5)
+            self.__Cflue = 0.5 * self.__flueArea * ((2.0/self.__RHO_AIR)**0.5)*((1.0/self.__AP_REF)** (self.__n - 0.5))
 
         self.__C_total = self.__Cc0 + self.__Cf0 + self.__Cw0 + self.__Cflue
     
@@ -252,6 +249,12 @@ class aim2:
     def __setShelterCoefficient(self):
         #This equation is shown as Swo * (1.0 + Y) + Swflue * (1.5 * Y) in Bradley but this is a typo
         self.__Sw=self.__shelter_walls * (1.0 - self.__Y) + self.__shelter_flue * (1.5 * self.__Y)
+    
+    def __setFlueArea(self):
+        self.__flueArea = 0.0
+        for fD in self.__flue_diam_mm:
+            self.__flueArea+=(fD**2.0)
+        self.__flueArea=math.pi*self.__flueArea/4000000
     
     def __fs_no_flue(self):
         """
@@ -266,7 +269,7 @@ class aim2:
         M=((self.__X+((2.0*self.__n)+1.0)*self.__Y)**2.0)/(2.0-self.__R)
         if M > 1.0: # Limit as defined in Walker and Wilson Equation 23
             M = 1.0
-        Xc = self.__R + ((2.0*(1.0-self.__R-self.Y))/(self.__n+1.0))-(2.0*self.__Y*((self.__Bf-1.0)**self.__n))
+        Xc = self.__R + ((2.0*(1.0-self.__R-self.__Y))/(self.__n+1.0))-(2.0*self.__Y*((self.__Bf-1.0)**self.__n))
         
         exp = ((3.0*self.__n)-1.0)/3.0
         num = 3.0*((Xc-self.__X)**2.0)*(self.__R**(1.0-self.__n))
@@ -286,8 +289,9 @@ class aim2:
     def __stack_pressure(self,Ti,To):
         """
         Bradley: Ps = rho * g * H * (Ti - To) / Ti
+        Determine outdoor air density
         """
-        return self.__RHO_AIR * self.__G * self.__eave_height * (abs(Ti - To) / Ti)
+        return (self.__RHO_Con/To) * self.__G * self.__eave_height * (abs(Ti - To) / Ti)
     
     def __stack_flow(self,Ps):
         C_converted = self.__C_total * 3600/self.__volume
@@ -311,10 +315,10 @@ class aim2:
             den = 1.0
         return wind_speed * (num / den) / 3.6  # Convert km/h to m/s
     
-    def __wind_flow(self,Ue):
+    def __wind_flow(self,Ue,To):
         C_converted = self.__C_total * 3600/self.__volume
         # Bradley: Pw = 0.5 * rho * (Sw * Ue)^2
-        Pw = 0.5 * self.__RHO_AIR * (self.__Sw * Ue) ** 2  
+        Pw = 0.5 * (self.__RHO_Con/To) * (self.__Sw * Ue) ** 2  
         return C_converted * self.__fw * (Pw ** self.__n)
     
     def __superpose(self,Qs,Qw):
