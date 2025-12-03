@@ -70,7 +70,7 @@ class aim2:
             self.__fs_no_flue() # Stack factor (no-flue)
             self.__fw_no_flue()
     
-    def getInfiltration(self,indoor_temp=22.0,outdoor_temp=0.0,wind_speed=0,temp_unit='C',is_met_wind_speed=True):
+    def getInfiltration(self,indoor_temp=22.0,outdoor_temp=0.0,wind_speed=0,temp_unit='C',mech_vent_supply=0.0, mech_vent_exhaust=0.0, is_met_wind_speed=True):
         """
         Inputs
         =========================================================
@@ -78,6 +78,8 @@ class aim2:
         - outdoor_temp : Outdoor drybulb temperature (C or K)
         - wind_speed : Wind speed (km/h)
         - temp_unit : Temperature units, either 'C' or 'K'
+        - mech_vent_supply : Total ventilation supply flow rate (L/s)
+        - mech_vent_exhaust : Total ventilation exhaust flow rate (L/s)
         - is_met_wind_speed : Boolean. True if entered windspeed was measured at meteorlogical site
 
         """
@@ -101,6 +103,14 @@ class aim2:
         # Superposition
         Qnat = self.__superpose(Qs, Qw)
         
+        # Determine ventilation flow
+        ACHSup = mech_vent_supply*3.6/self.__volume # L/s -> ach
+        ACHExh = mech_vent_exhaust*3.6/self.__volume # L/s -> ach
+        Qbal = min(ACHSup,ACHExh)
+        Qunbal = abs(ACHSup-ACHExh)
+        Qtotal = Qbal+math.sqrt((Qunbal**2.0)+(Qnat**2.0))
+        QventNat = Qtotal-Qunbal-Qbal
+        
         return {
             "C_base": self.__C_base, "C_total": self.__C_total, "C_flue": self.__Cflue,
             "Cc0": self.__Cc0, "Cf0": self.__Cf0, "Cw0": self.__Cw0,
@@ -108,7 +118,7 @@ class aim2:
             "Ps": Ps, "fs": self.__fs,
             "Ue": Ue, "Sw":self.__Sw,
             "Qs": Qs, "Qw": Qw,
-            "Qnat": Qnat
+            "Qnat": Qnat,"QenvACH":QventNat,"Qbal":Qbal,"Qunbal":Qunbal,"Qtotal":Qtotal
         }
     
     #################################################################
