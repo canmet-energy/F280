@@ -705,8 +705,17 @@ def parse_idf_parameters(sim_dir: Path):
                 cz += x1*y2 - y1*x2
             return 0.5 * math.sqrt(cx*cx + cy*cy + cz*cz)
         
-        def calculate_construction_rsi(construction_name):
-            """Calculate total RSI value for a construction."""
+        def calculate_construction_rsi(construction_name, surface_type='wall'):
+            """Calculate total RSI value for a construction including air films.
+            
+            Args:
+                construction_name: Name of the construction
+                surface_type: 'wall', 'roof', or 'floor' to determine air film values
+            
+            Air films (CSA standards):
+                Walls (vertical): 0.030 (exterior) + 0.120 (interior) = 0.150 total
+                Roof (horizontal): 0.030 (exterior) + 0.162 (interior) = 0.192 total
+            """
             if construction_name not in constructions:
                 return None
             
@@ -717,7 +726,20 @@ def parse_idf_parameters(sim_dir: Path):
                 if layer_name in materials:
                     total_rsi += materials[layer_name]
             
-            return total_rsi if total_rsi > 0 else None
+            if total_rsi <= 0:
+                return None
+            
+            # Add air film resistances based on surface type
+            if surface_type in ['roof', 'roofceiling']:
+                # Horizontal surface air films
+                total_rsi += 0.030  # Exterior air film
+                total_rsi += 0.162  # Interior air film
+            else:  # wall or other vertical surfaces
+                # Vertical surface air films
+                total_rsi += 0.030  # Exterior air film
+                total_rsi += 0.120  # Interior air film
+            
+            return total_rsi
         
         def calculate_overhang_from_vertices(vertices, window_name):
             """Calculate overhang depth and head drop from Shading:Zone:Detailed vertices.
@@ -918,7 +940,7 @@ def parse_idf_parameters(sim_dir: Path):
                 # Calculate RSI for this surface's construction
                 surface_rsi = None
                 if construction_name:
-                    surface_rsi = calculate_construction_rsi(construction_name)
+                    surface_rsi = calculate_construction_rsi(construction_name, surface_type)
                 
                 if outside_bc == 'outdoors':
                     if surface_type == 'wall':

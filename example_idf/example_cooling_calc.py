@@ -69,7 +69,7 @@ results = f280_cooling_load_from_idf(
     
     # ========== HVAC PARAMETERS ==========
     hrv_efficiency=0.6,             # Heat/Energy recovery ventilator efficiency (0-1)
-    duct_location='attic_open',     # 'attic_open', 'crawl_enclosed', 'unconditioned_bsmt', 'slab_perimeter'
+    duct_location='conditioned',     # 'attic_open', 'crawl_enclosed', 'unconditioned_bsmt', 'slab_perimeter'
     duct_rsi=1.4,                   # Duct insulation RSI (m²·K/W)
     
     # ========== OTHER PARAMETERS ==========
@@ -123,9 +123,9 @@ print(f"Ventilation:          {results['HGsvb_ventilation_W']:>8.0f} W")
 print(f"Duct Gains:           {results['HGdr_duct_gain_W']:>8.0f} W")
 print(f"{'-' * 40}")
 print(f"Total Sensible:       {results['HGsr_sensible_total_W']:>8.0f} W")
-print(f"Total Latent:         {results['q_latent_total']:>8.0f} W")
+print(f"Latent (via multiplier): {(results['CSCn_nominal_W'] - results['HGsr_sensible_total_W']):>8.0f} W")
 print(f"{'=' * 40}")
-print(f"TOTAL COOLING LOAD:   {results['q_total_W']:>8.0f} W")
+print(f"TOTAL COOLING LOAD:   {results['CSCn_nominal_W']:>8.0f} W")
 
 # Equipment sizing
 print("\n--- Equipment Sizing (CSA F280-12) ---")
@@ -142,8 +142,8 @@ for orientation, details in results['solar_details'].items():
 
 # Performance metrics
 print("\n--- Performance Metrics ---")
-print(f"Load Intensity:       {results['q_total_W'] / results['floor_area_total_m2']:.1f} W/m²")
-print(f"Sensible/Total:       {results['HGsr_sensible_total_W'] / results['q_total_W'] * 100:.1f}%")
+print(f"Load Intensity:       {results['CSCn_nominal_W'] / results['floor_area_total_m2']:.1f} W/m²")
+print(f"Sensible/Total:       {results['HGsr_sensible_total_W'] / results['CSCn_nominal_W'] * 100:.1f}%")
 print(f"Latent Multiplier:    {results['latent_multiplier_used']:.2f}")
 print(f"Latitude Factor:      {results['LFactor']:.3f}")
 print(f"Duct Gain Multiplier: {results['duct_gain_multiplier']:.2f}")
