@@ -3,41 +3,77 @@ import numpy as np
 import os.path
 import pathlib
 import math
+
+def getFoundationWeather():
+    sPathDbs = str(pathlib.Path(__file__).resolve().parent).__str__()
+    sPathDbs=sPathDbs.replace('\\','/')
+    sWthFile = sPathDbs+'/FdnWth.csv'
+    df = pd.read_csv(sWthFile, encoding = "ISO-8859-1")
+    return df
+    
 class basesimp:
-    def __init__(self,iLoc=187,config='BCIN_4',length=12.4,width=6.4,overlap=0.6,rsi_interior=0.0, rsi_exterior=0.0, rsi_slab=0.0, exposed_perim=0.0,height=2.5,depth=1.75,window_area=0.0,door_area=0.0,soilk=0.85,watertable_depth=8,frac_heated=0.9,T_fluid=33):
+    def __init__(self,iLoc=187,config='BCIN_4',length=12.4,width=6.4,overlap=0.6,rsi_interior=0.0, rsi_exterior=0.0, rsi_slab=0.0, exposed_perim=0.0,height=2.5,depth=1.75,window_area=0.0,door_area=0.0,frac_heated=0.0,T_fluid=33,soilk=0.85,watertable_depth=8):
+        '''
+        Docstring Basesimp
+
+        :int iLoc: Location index 
+        :str config: Basesimp configuration identifier. Format BXXX_Y or SXX_Y for basements or slabs, respectively
+        :float length: Length of basement. Min of 5 m, max of 30 m
+        :float width: Width of basement. Min of 5 m, max of 30 m
+        :float overlap: Overlap of insulation. Only used of 'config' has overlap as variable. Default 0.6
+        :float rsi_interior: Thermal resistance of interior wall insulation (m2.K/W). Default 0
+        :float rsi_exterior: Thermal resistance of exterior wall insulation (m2.K/W). Default 0
+        :float rsi_slab: Thermal resistance of slab insulation (m2.K/W)
+        :float exposed_perim: Length of perimeter exposed (m). If all exposed, enter 0.
+        :float height: Height of basement (m)
+        :float depth: Depth of basement (m)
+        :float window_area: Total window area (m2). Default 0 m2
+        :float door_area: Total door area (m2). Default 0 m2
+        :float frac_heated: Fraction of slab heated. If no radiant heating, set to 0. Default 0
+        :float T_fluid: Fluid temperature of infloor heating system. 22 to 55 oC
+        :float soilk: Soil conductivity (W/m.K). Normal = 0.85, High/moist = 1.275, very wet/permafrost = 1.9
+        :float watertable_depth: Water table depth (m). Shallow = 5, Normal = 8, Deep = 12
+        '''
+        
         sPathDbs = str(pathlib.Path(__file__).resolve().parent).__str__()
         sPathDbs=sPathDbs.replace('\\','/')
-        sWthFile = sPathDbs+'/FdnWth.csv'
+        self.__sWthFile = sPathDbs+'/FdnWth.csv'
         sConfigFile = sPathDbs+'/FdnConfigs.csv'
         sConfigFile = sPathDbs+'/FdnConfigs.csv'
         sCFsFile = sPathDbs+'/CornerCFs.csv'
-        if not os.path.isfile(sWthFile):
+        if not os.path.isfile(self.__sWthFile):
             raise Exception("Cannot find weather database FdnWth.csv. Must be in same folder as class src file.")
         elif not os.path.isfile(sConfigFile):
             raise Exception("Cannot find configurations database FdnConfigs.csv. Must be in same folder as class src file.")
         elif not os.path.isfile(sCFsFile):
             raise Exception("Cannot find corner corrections database CornerCFs.csv. Must be in same folder as class src file.")
         
-        self.__soilk = soilk
-        self.__wtDepth = watertable_depth
-        self.__rsiInt = rsi_interior
-        self.__rsiExt = rsi_exterior
-        self.__rsiSlab = rsi_slab
+        self.__soilk:float  = soilk
+        self.__wtDepth: float = watertable_depth
+        self.__rsiInt: float = rsi_interior
+        self.__rsiExt: float = rsi_exterior
+        self.__rsiSlab: float = rsi_slab
         self.__loc: int = iLoc
-        self.__config: str = config
-        self.__height = height
-        self.__width = width
-        self.__length = length
-        self.__depth = depth
+        self.__config: str = config.upper()
+        self.__height: float = height
+        self.__width: float = width
+        self.__length: float = length
+        self.__depth: float = depth
+        self.__window_area: float=window_area
+        self.__door_area: float=door_area
+        self.__fracHeated: float = frac_heated
+        self.__TRadFluidTemp: float = T_fluid
+        self.__exposedPerimLength: float = exposed_perim
+        
+        self.__checkInputs()
+        self.__bIsBasement = True
+        if self.__config[0] == 'S':
+            self.__setSlabOverride()
+            self.__bIsBasement = False
         self.__perim = 2.0*(length+width)
-        self.__window_area=window_area
-        self.__door_area=door_area
-        
-        self.__TBsmt = 22.0
-        
-        #self.__checkInput()
-        
-        self.__getWeather(sWthFile) # Get the design weather data
+        self.__setConstants()
+        self.__setRadiantSlabTemp()
+        self.__getWeather(self.__sWthFile) # Get the design weather data
         self.__getConfigs(sConfigFile) # Load the correlation coefficients
         self.__getCornerCF(sCFsFile) # Load the corner correction coefficients
         self.__setOverlap(overlap)
@@ -45,7 +81,7 @@ class basesimp:
         self.__Welen = self.__depth+0.1
         self.__Overlap_06 = self.__overlap/0.6
         self.__setAreas()
-        
+
         # This method replicates "BS1"
         self.__setBS1()
         
@@ -62,14 +98,90 @@ class basesimp:
             r2=math.cos(self.__Omega*float(iDayYearP)+self.__Ca2)
         
         FHLmon=self.__Ca1*(r2-r1)/iDayMonth
-        
-        #TotHeatLoadW=(self.__SagFinal*(self.__TBsmt-self.__Design_H_DBT)*self.__Agfr+FHLmon+alpha_2*(self.__TBsmt-Soil_Mean_T)+alpha_3*(Radiant_Slab_Temperature-Soil_Mean_T))*Exposed_Fraction
+        if self.__bIsBasement:
+            TotHeatLoadW=(self.__SagFinal*(self.__TBsmt-self.__Design_H_DBT)*self.__Agfr+FHLmon+self.__alpha2*(self.__TBsmt-self.__DGTemp)+self.__alpha3*(self.__Radiant_Slab_Temperature-self.__DGTemp))*self.__Exposed_Fraction
+        else:
+            if self.__fracHeated>0.0:
+                Tboundary = self.__Radiant_Slab_Temperature
+            else:
+                Tboundary = self.__TBsmt
+            TotHeatLoadW=(self.__SagFinal*(Tboundary-self.__Design_H_DBT)+FHLmon+self.__SbavgFinal*(Tboundary-self.__DGTemp))*self.__Exposed_Fraction
+            
+        return TotHeatLoadW
+    
+    def __checkInputs(self):
+        if self.__length < 5.0 or self.__length>30.0:
+            raise Exception(f"Foundation length must be between 5 and 30 m. Value entered: {self.__length}")
+        if self.__width < 5.0 or self.__width>30.0:
+            raise Exception(f"Foundation width must be between 5 and 30 m. Value entered: {self.__width}")
+        if self.__height < 0.0:
+            raise Exception(f"Foundation height must be greater than 0 m. Value entered: {self.__height}")
+        if self.__depth < 0.0:
+            raise Exception(f"Foundation depth must be greater than 0 m. Value entered: {self.__depth}")
+        if self.__depth > self.__height:
+            raise Exception(f"Foundation height must be greater than depth. Height of {self.__height} and depth of {self.__depth} entered")
+        if self.__TRadFluidTemp < 22.0 or self.__TRadFluidTemp > 50.0:
+            raise Exception(f"Hydronic heating fluid temperature must be between 22 and 55. Value enetered is {self.__TRadFluidTemp}")
+        # TODO: More error handling
+
+    def __setSlabOverride(self):
+        self.__height = 0.0
+        self.__depth = 0.05
+    
+    def __setConstants(self):
+        self.__TBsmt = 22.0
+        self.__InsValues = {
+            'concrete': {
+                'walls': 0.116,
+                'floors':0.0578
+            },
+            'wood': {
+                'walls': 0.417,
+                'floors':0.833
+            }
+        }
     
     def __setAreas(self):
         self.__Abwag=(self.__height-self.__depth)*2*(self.__length+self.__width)
-        self.__Awalls=self.__height*2*(self.__length+self.__width)
-        self.__Afloor=self.__length*self.__width
-        self.__Agfr=(self.__Abwag-self.__window_area-self.__window_area)/self.__Abwag
+        self.__Agfr=(self.__Abwag-self.__window_area-self.__door_area)/self.__Abwag
+        if self.__exposedPerimLength <= 0:
+            self.__Exposed_Fraction = 1.0
+        else:
+            self.__Exposed_Fraction = min(1,max(self.__exposedPerimLength/self.__perim))
+
+    def __setAlphas(self):
+        if int(self.__dfCOeffs['iFndFlag_4']) == 0:
+            keyWall = 'concrete'
+        else:
+            keyWall = 'wood'
+        if int(self.__dfCOeffs['iFndFlag_5']) == 0:
+            keyFloor = 'concrete'
+        else:
+            keyFloor = 'wood'
+        
+        rValWalls = self.__rsiInt+self.__rsiExt+self.__InsValues[keyWall]['walls']
+        thickness = rValWalls/13.93
+        insideLength = self.__length-2.*thickness
+        insidewidth = self.__width-2*thickness
+        insideFloorArea  =insideLength*insidewidth
+        uWalls = self.__depth*2*(insideLength+insidewidth)/rValWalls
+        
+        rValFloor = self.__rsiSlab+self.__InsValues[keyFloor]['floors']
+        uFloors = insideFloorArea/rValFloor
+        
+        uVal = max((uWalls+uFloors),0.1)
+        if self.__fracHeated > 0.0:
+            self.__alpha2 = self.__SbavgFinal*uWalls/uVal
+            self.__alpha3 = self.__SbavgFinal*uFloors/uVal
+        else:
+            self.__alpha2 = self.__SbavgFinal
+            self.__alpha3 = 0.0       
+    
+    def __setRadiantSlabTemp(self):
+        if self.__TRadFluidTemp > 0.0:
+            self.__Radiant_Slab_Temperature = self.__TBsmt+(self.__fracHeated*(self.__TRadFluidTemp-self.__TBsmt))
+        else:
+            self.__Radiant_Slab_Temperature = 0.0
         
     def __getWeather(self,sPathDbs):
         lMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
@@ -223,20 +335,26 @@ class basesimp:
         return icol1
     
     def __getRSI1(self,df):
-        iInFlag = self.__getInFlag(df)
-        match iInFlag:
-            case 1:
-                rsi1=0.0
-            case 2:
-                rsi1=max(self.__rsiInt,self.__rsiExt)
-            case 3:
-                rsi1=0.88*max(self.__rsiInt,self.__rsiExt)+0.12*self.__rsiSlab
-            case 4:
-                rsi1=self.__rsiInt+self.__rsiExt
-            case 5:
-                rsi1=(self.__rsiInt+self.__rsiExt)*0.44+0.12*self.__rsiSlab
-            case _:
-                raise Exception(f"Insulation flag must be 1 - 5. Value entered is {iInFlag}")
+        if self.__bIsBasement:
+            iInFlag = self.__getInFlag(df)
+            match iInFlag:
+                case 1:
+                    rsi1=0.0
+                case 2:
+                    rsi1=max(self.__rsiInt,self.__rsiExt)
+                case 3:
+                    rsi1=0.88*max(self.__rsiInt,self.__rsiExt)+0.12*self.__rsiSlab
+                case 4:
+                    rsi1=self.__rsiInt+self.__rsiExt
+                case 5:
+                    rsi1=(self.__rsiInt+self.__rsiExt)*0.44+0.12*self.__rsiSlab
+                case _:
+                    raise Exception(f"Insulation flag must be 1 - 5. Value entered is {iInFlag}")
+        else:
+            if self.__config[2] == 'N':
+                return 0
+            else:
+                return self.__rsiSlab
             
         return rsi1
     
@@ -274,7 +392,7 @@ class basesimp:
 
     def __setFdnCalc(self):
         rsi_total=self.__getRSI1(self.__dfCOeffs)
-        wrsi= self.__getWRSI(rsi_total)
+        wrsi= self.__getWRSI()
         denom=math.exp(wrsi*rsi_total)
         if rsi_total<= 0.01:
             self.__SagFinal=self.__SagNoIns
@@ -290,20 +408,22 @@ class basesimp:
             # Interpolate
             self.__SagFinal=self.__Sag+(self.__SagNoIns-self.__Sag)/denom
             self.__SbavgFinal=self.__Sbgavg+(self.__SbgavgNoIns-self.__Sbgavg)/denom
-            self.__SbvarFinal=self.__Sbgvar+(self.__SbgavgNoIns-self.__Sbgavg)/denom
-            self.__fdnPhaseFinal=self.__fdnPhase+(self.__fdnPhase-self.__fdnPhaseNoIns)/denom
+            self.__SbvarFinal=self.__Sbgvar+(self.__SbgvarNoIns-self.__Sbgvar)/denom
+            self.__fdnPhaseFinal=self.__fdnPhase+(self.__fdnPhaseNoIns-self.__fdnPhase)/denom
         
         self.__Omega =2*math.pi/365
         self.__Ca1 =self.__SbvarFinal*self.__Amps/self.__Omega
         self.__Ca2=self.__fdnPhaseFinal-(0.5*math.pi)-self.__Phs
         self.__Ca3=math.cos(self.__Ca2)
+        
+        # Calculate the "Alphas"
+        self.__setAlphas()
     
-    def __getWRSI(self,rsi):
-        if self.__config[0].upper() == 'B':
+    def __getWRSI(self):
+        if self.__bIsBasement:
             return 2.29
         else:
-            # TODO
-            pass
+            return 1.77
     
     def __getMonthParams(self,i):
         match i:
